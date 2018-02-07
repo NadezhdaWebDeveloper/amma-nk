@@ -10,7 +10,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      /*{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }*/
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
     ]
   },
   /*
@@ -33,6 +34,20 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
-  }
+    },
+
+    /* babel: {
+      presets: ['vue-app'] // by default
+      presets: ['es2015', 'stage-0']
+    } */
+  },
+
+  css: [
+    // Load a Node.js module directly (here it's a Sass file)
+    // 'bulma',
+    // CSS file in the project
+    // '@/assets/css/global.css',
+    // SCSS file in the project
+    '@/assets/css/global.scss'
+  ]
 }

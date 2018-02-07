@@ -1,0 +1,32 @@
+@import "../global";
+@import "../_core/variables";
+@import "../libs/variables";
+@import "../libs/mixins";
+@import "../sections/tabs";
+@import "../sections/info-area";
+
+.programs {
+  .tabs-nav {
+    li {
+      &.active {
+        a {
+          &:after {
+            background-color: #4b89dc;
+          }
+        }
+      }
+    }
+  }
+  .bottom-buttons {
+    a {
+      &:before {
+        background-color: #4b89dc;
+      }
+    }
+    .icon-acrobat {
+      &:after {
+        color: #4b89dc;
+      }
+    }
+  }
+}

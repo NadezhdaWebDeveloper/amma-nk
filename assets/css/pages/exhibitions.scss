@@ -1,0 +1,278 @@
+@import "../global";
+@import "../_core/variables";
+@import "../libs/variables";
+@import "../libs/mixins";
+@import "../sections/tabs";
+@import "../sections/slick";
+@import "../sections/collection-gallery";
+@import "../sections/info-area";
+@import "../sections/posts";
+@import "../sections/artwork-table";
+@import "../sections/images-gallery";
+
+.tabs-wrap {
+  .tabs-nav {
+    li {
+      &.active {
+        a {
+          &:after {
+            background: $color-green;
+          }
+        }
+      }
+    }
+  }
+}
+
+a.link {
+  &:before {
+    background-color: $color-green;
+  }
+}
+
+.info-area {
+  .back {
+    a {
+      &:before {
+        color: $color-green;
+      }
+      &:hover {
+        color: $color-green;
+      }
+    }
+  }
+  .description {
+    .date {
+      color: #aab2bd;
+    }
+  }
+  .bottom-buttons {
+    a.icon-share {
+      &:before {
+        color: $color-green;
+      }
+    }
+  }
+}
+
+.exhibition-info {
+  display: none;
+}
+/* exhibition-info end */
+
+.exhibitions {
+  .posts {
+    @include small-up {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .post {
+      margin-bottom: 15px;
+      @include small-up {
+        width: 49%;
+      }
+      @include xlarge-up {
+        margin-bottom: 40px;
+      }
+      &:first-child {
+        width: 100%;
+        figure {
+          @include small-up {
+            margin-bottom: 0;
+          }
+          a {
+            @include small-up {
+              height: 400px;
+            }
+            @include xlarge-up {
+              height: 670px;
+            }
+          }
+        }
+        .info {
+          @include small-up {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            max-width: 740px;
+            .date {
+              color: #aab2bd;
+            }
+            a {
+              color: $color-white;
+            }
+            h3 {
+              &:after {
+                display: none;
+              }
+            }
+            h4 {
+              a {
+                color: #aab2bd;
+              }
+            }
+          }
+          @include medium-up {
+            padding: 20px;
+          }
+          @include xlarge-up {
+            padding: 20px 48px;
+            left: 30px;
+            bottom: 30px;
+            .date {
+              margin-bottom: -6px;
+            }
+            h3 {
+              padding-top: 8px;
+            }
+            h4 {
+              margin-bottom: 30px;
+            }
+          }
+        }
+      }
+      figure {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+      }
+      h3 {
+        text-transform: none;
+        font-size: 16px;
+        font-family: $font-ovo;
+        @include xlarge-up {
+          font-size: 36px;
+          line-height: 36px;
+          margin-bottom: 10px;
+          padding-top: 15px;
+        }
+        &:after {
+          background-color: $color-green;
+        }
+        a {
+          color: #434a54;
+        }
+      }
+      h4 {
+        font-size: 12px;
+        line-height: 16px;
+        font-family: $font-primary;
+        text-transform: uppercase;
+        @include xlarge-up {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  .sponsors {
+    padding-bottom: 20px;
+    @include xlarge-up {
+      padding-bottom: 40px;
+    }
+    h2 {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      @include xlarge-up {
+        margin-right: 20px;
+      }
+    }
+    ul {
+      display: inline-block;
+      vertical-align: middle;
+      @include medium-up {
+        margin-bottom: 0;
+      }
+      li {
+        padding: 0;
+        margin-right: 7px;
+        margin-bottom: 10px;
+        width: 130px;
+        height: 70px;
+        line-height: 100px;
+        border: 1px solid #e6e9ee;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        @include xlarge-up {
+          margin-right: 24px;
+        }
+        img {
+          max-width: 100%;
+        }
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+  /* sponsors end */
+  .collection-wrap {
+    padding-bottom: 0 !important;
+  }
+}
+/* exhibitions end  */
+
+.exhibition-details {
+  .info-area {
+    @include xlarge-up {
+      margin-bottom: 52px;
+    }
+  }
+  .artwork-information {
+    margin-bottom: 20px;
+    @include xmedium-up {
+      > .row {
+        display: flex;
+        justify-content: center;
+      }
+    }
+    @include xlarge-up {
+      margin-bottom: 64px;
+    }
+  }
+  .images-gallery {
+    @include xlarge-up {
+      padding-top: 0;
+      margin-right: 85px;
+    }
+    h2 {
+      text-align: center;
+    }
+    h3 {
+      max-width: 440px;
+      margin: 0 auto 20px;
+      text-align: center;
+      @include xlarge-up {
+        font-size: 22px;
+        line-height: 26px;
+        margin-bottom: 36px;
+      }
+    }
+    .images-slider {
+      .item {
+        @include medium-up {
+          height: 390px !important;
+        }
+      }
+    }
+    .images-pager {
+      @include xlarge-up {
+        width: 600px;
+      }
+    }
+  }
+}
+/* exhibitions-details end */
+
+.pagination {
+  .previouspostslink, .nextpostslink {
+    &:before {
+      background-color: $color-green;
+    }
+  }
+}
+/* pagination end */

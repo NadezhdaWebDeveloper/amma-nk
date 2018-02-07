@@ -1,0 +1,106 @@
+/* artists-index */
+.artists-index {
+  margin-bottom: 45px;
+  @include xmedium-up {
+    margin-bottom: 56px;
+  }
+  @include xlarge-up {
+    margin-bottom: 72px;
+  }
+  .holder {
+    position: relative;
+    margin-bottom: 30px;
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 1px;
+      bottom: 0;
+      width: 50px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+      @include xmedium-up {
+        display: none;
+      }
+    }
+  }
+  ul {
+    padding: 15px 0;
+    overflow-x: auto;
+    border-top: 1px solid #e6e9ee;
+    border-bottom: 1px solid #e6e9ee;
+    white-space: nowrap;
+    position: relative;
+    margin-bottom: 0;
+    @include xmedium-up {
+      overflow: hidden;
+      white-space: normal;
+      text-align: center;
+    }
+    @include medium-up {
+      padding: 12px 0 9px 21px;
+    }
+    @include xlarge-up {
+      padding-top: 25px;
+      padding-bottom: 25px;
+    }
+    li {
+      font: 18px/24px $font-ovo;
+      text-transform: uppercase;
+      display: inline-block;
+      vertical-align: top;
+      white-space: normal;
+      margin-right: 23px;
+      padding-left: 0 !important;
+      margin-bottom: 0 !important;
+      @include xmedium-up {
+        margin-right: 19px;
+        margin-bottom: 0;
+      }
+      @include medium-up {
+        margin-right: 23px;
+      }
+      @include xlarge-up {
+        font-size: 24px;
+        line-height: 30px;
+        margin-right: 30px;
+      }
+      &:before {
+        display: none;
+      }
+      &.active {
+        a {
+          color: $color-yellow;
+          display: inline-block;
+          vertical-align: top;
+          position: relative;
+          &:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -16px;
+            width: 10px;
+            height: 2px;
+            background-color: $color-yellow;
+            @include xlarge-up {
+              top: -33px;
+            }
+          }
+        }
+      }
+      a {
+        transition: opacity .3s;
+        &:hover {
+          opacity: .7;
+        }
+      }
+    }
+  }
+  .btn {
+    @include xlarge-up {
+      min-width: 290px;
+    }
+  }
+}
+
+/* artists-index end */

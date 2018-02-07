@@ -1,0 +1,218 @@
+.footer_ {
+  position: relative;
+  background: linear-gradient(to top, #131517 0%, #1f2226 100%);
+  padding: 45px 5px 20px;
+  color: #aab2bd;
+  font-size: 14px;
+  line-height: 18px;
+  @include small-up {
+    text-align: left;
+    flex: 0 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @include medium-up {
+    font-size: 16px;
+    line-height: 24px;
+    padding-top: 30px;
+  }
+  @include xlarge-up {
+    font-size: 20px;
+    line-height: 30px;
+    padding-top: 42px;
+  }
+  .container {
+    max-width: 600px;
+    @include xmedium-up {
+      max-width: none;
+    }
+    @include medium-up {
+      width: 1060px;
+    }
+    @include xlarge-up {
+      width: 1590px;
+    }
+    > .row {
+      > div {
+        margin-bottom: 43px;
+        @include xmedium-up {
+          margin-bottom: 11px;
+        }
+      }
+    }
+  }
+  /* social */
+  .social {
+    position: absolute;
+    right: 4px;
+    top: 0;
+    font-size: 22px;
+    @include xmedium-up {
+      position: relative;
+    }
+    li {
+      margin-bottom: 10px;
+      @include xmedium-up {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 23px;
+      }
+    }
+    a {
+      color: #aab2bd;
+      transition: color .3s;
+      &:before {
+        width: auto;
+        margin: 0;
+        @include xmedium-up {
+          text-align: left;
+        }
+      }
+      &:hover {
+        color: $color-white;
+      }
+    }
+  }
+  /* social end */
+  h5 {
+    font: 12px/16px $font-mulilight;
+    text-transform: uppercase;
+    position: relative;
+    padding-top: 8px;
+    display: inline-block;
+    vertical-align: top;
+    @include xmedium-up {
+      font-size: 14px;
+      padding-top: 13px;
+      margin-bottom: 15px;
+    }
+    @include xlarge-up {
+      font-size: 18px;
+      line-height: 30px;
+      margin-bottom: 11px;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: #ff3a1a;
+      width: 10px;
+      height: 2px;
+      transition: width .3s;
+    }
+    &:hover {
+      &:before {
+        width: 100%;
+      }
+    }
+    a {
+      color: #aab2bd;
+    }
+  }
+  /* subscribe */
+  .subscribe {
+    font-size: 14px;
+    @include xmedium-up {
+      font-size: 16px;
+    }
+    @include medium-up {
+      margin-right: 20px;
+    }
+    @include xlarge-up {
+      margin-left: 60px;
+      margin-right: 0;
+      font-size: 20px;
+      line-height: 30px;
+    }
+    p:first-of-type {
+      font-size: 16px;
+      font-family: $font-ovo;
+      margin-bottom: 5px;
+      @include xmedium-up {
+        font-size: 18px;
+      }
+      @include xlarge-up {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+  /* form */
+  .subscribe-form {
+    padding: 5px 10px 0;
+    text-align: center;
+    @include xmedium-up {
+      display: flex;
+      padding: 25px 0 0;
+    }
+    .form-group {
+      margin-bottom: 29px;
+      &:first-child {
+        @include xmedium-up {
+          width: 190px;
+          margin-right: 10px;
+        }
+        @include xlarge-up {
+          width: 290px;
+        }
+      }
+    }
+    .form-control {
+      text-align: center;
+      border-color: #656d78;
+      @include xmedium-up {
+        text-align: left;
+        font-size: 16px;
+        line-height: 18px;
+        height: 40px;
+      }
+      @include xlarge-up {
+        font-size: 20px;
+        line-height: 30px;
+        height: 50px;
+      }
+    }
+    .form-control::-moz-placeholder {
+      color: #434a54;
+    }
+    .form-control:-ms-input-placeholder {
+      color: #434a54;
+    }
+    .form-control::-webkit-input-placeholder {
+      color: #434a54;
+    }
+    .btn {
+      color: #aab2bd;
+      border-color: #656d78;
+      @include xmedium-up {
+        min-width: 96px;
+      }
+      @include xlarge-up {
+        min-width: 150px;
+        font-size: 18px;
+        line-height: 20px;
+      }
+      &:hover {
+        border-color: $color-red;
+      }
+    }
+  }
+  /* form end  */
+  /* subscribe end */
+  .copy {
+    color: #434a54;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    @include xmedium-up {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    @include xlarge-up {
+      font-size: 18px;
+    }
+  }
+}
+
+/* footer end */

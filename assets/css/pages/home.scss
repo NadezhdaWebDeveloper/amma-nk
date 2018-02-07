@@ -1,0 +1,603 @@
+@import "../global";
+@import "../_core/variables";
+@import "../libs/variables";
+@import "../libs/mixins";
+// sections
+@import "../sections/slick";
+@import "../sections/posts";
+@import "../sections/artists-index";
+@import "../sections/big-slider";
+
+.no-dev {
+  .content {
+    @include medium-up {
+      padding-top: 104px;
+    }
+    @include xlarge-up {
+      padding-top: 170px;
+      padding-bottom: 45px;
+    }
+  }
+}
+
+section {
+  h2 {
+    text-align: center;
+    font-size: 30px;
+    line-height: 36px;
+    @include xmedium-up {
+      font-size: 40px;
+      line-height: 42px;
+    }
+    @include xlarge-up {
+      font-size: 60px;
+      line-height: 66px;
+    }
+  }
+}
+
+/* main-gallery end */
+
+/* collection-gallery */
+.collection-gallery-wrap {
+  margin-bottom: 45px;
+  @include xmedium-up {
+    margin-bottom: 56px;
+  }
+  @include xlarge-up {
+    margin-bottom: 72px;
+  }
+  .collection-gallery {
+    margin-bottom: 24px;
+    position: relative;
+    &:after {
+      @include xmedium-up {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 88px;
+        background: $color-white;
+        opacity: 0.85;
+      }
+      @include xlarge-up {
+        width: 130px;
+      }
+    }
+    @include xlarge-up {
+      margin-bottom: 32px;
+    }
+    li {
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.collection-gallery {
+  white-space: nowrap;
+  overflow-x: auto;
+  margin-right: -20px;
+  position: relative;
+  li {
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
+    margin-right: 15px;
+    @include medium-up {
+      margin-right: 19px;
+    }
+    @include xlarge-up {
+      margin-right: 31px;
+    }
+    &:before {
+      display: none;
+    }
+  }
+  .item {
+    width: 160px;
+    font: 16px/19px $font-ovo;
+    color: #1f2226;
+    @include xmedium-up {
+      width: 140px;
+      font-size: 18px;
+      line-height: 20px;
+    }
+    @include xlarge-up {
+      width: 209px;
+      font-size: 22px;
+      line-height: 26px;
+    }
+  }
+  p {
+    margin-bottom: 0;
+    @include xmedium-up {
+      margin-bottom: 6px;
+    }
+  }
+  figure {
+    margin-bottom: 10px;
+    @include xmedium-up {
+      margin-bottom: 14px;
+    }
+    @include xlarge-up {
+      margin-bottom: 20px;
+    }
+    a {
+      width: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 205px;
+      display: block;
+      @include xmedium-up {
+        height: 180px;
+      }
+      @include xlarge-up {
+        height: 270px;
+      }
+    }
+  }
+  h4 {
+    font: 12px/14px $font-primary;
+    text-transform: uppercase;
+    position: relative;
+    padding-top: 8px;
+    margin-bottom: 7px;
+    display: inline-block;
+    vertical-align: top;
+    @include xmedium-up {
+      font-size: 14px;
+      line-height: 16px;
+      padding-top: 13px;
+      margin-bottom: 13px;
+    }
+    @include xlarge-up {
+      font-size: 18px;
+      line-height: 24px;
+      padding-top: 15px;
+    }
+    &:after {
+      background-color: #ff3a1a;
+      content: "";
+      height: 2px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 10px;
+      transition: width .3s;
+    }
+    &:hover {
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+  .date {
+    color: #aab2bd;
+    font: 12px/14px $font-primary;
+    @include xmedium-up {
+      font-size: 14px;
+      line-height: 16px;
+    }
+    @include xlarge-up {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+  .slick-arrow {
+    @include medium-up {
+      top: 72px;
+    }
+    @include xlarge-up {
+      top: 120px;
+    }
+    &.slick-prev {
+      @include medium-up {
+        left: -67px;
+      }
+      @include xlarge-up {
+        left: -95px;
+      }
+    }
+    &.slick-next {
+      @include medium-up {
+        right: -67px;
+      }
+      @include xlarge-up {
+        right: -95px;
+      }
+    }
+  }
+}
+
+.no-dev {
+  .collection-gallery {
+    @include xmedium-up {
+      margin: 0 0 25px;
+      overflow: visible;
+      white-space: normal;
+    }
+  }
+}
+
+/* collection-gallery end */
+
+/* exhibitions */
+section.exhibitions {
+  margin-bottom: 45px;
+  @include xmedium-up {
+    margin-bottom: 27px;
+  }
+  @include xlarge-up {
+    margin-bottom: 30px;
+  }
+  .posts {
+    padding-bottom: 5px;
+    overflow: hidden;
+  }
+  .main-post {
+    @include xmedium-up {
+      width: 49%;
+      float: left;
+      margin-right: 20px;
+    }
+    @include xlarge-up {
+      margin-right: 30px;
+    }
+    .post {
+      figure {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+        margin-top: 0;
+        @include xmedium-up {
+          margin-bottom: 10px;
+        }
+        a {
+          width: 100%;
+          height: 170px;
+          @include small-up {
+            height: 400px;
+          }
+          @include xmedium-up {
+            height: 312px;
+          }
+          @include xlarge-up {
+            height: 475px;
+          }
+        }
+      }
+    }
+    .info {
+      @include xmedium-up {
+        padding: 0 !important;
+      }
+    }
+    .date {
+      @include xmedium-up {
+        margin-bottom: 14px;
+      }
+    }
+  }
+  .other-posts {
+    overflow: hidden;
+    @include small-up {
+      text-align: center;
+    }
+    .more {
+      @include xmedium-up {
+        text-align: left;
+      }
+    }
+    .post {
+      @include small-up {
+        display: inline-block;
+        vertical-align: top;
+        text-align: left;
+        width: 49%;
+      }
+      @include xmedium-up {
+        display: block;
+        width: auto;
+      }
+    }
+  }
+  .btn {
+    min-width: 200px;
+    font-size: 14px;
+    @include xlarge-up {
+      min-width: 290px;
+      font-size: 18px;
+    }
+  }
+  .post {
+    @include xlarge-up {
+      margin-bottom: 25px;
+    }
+    .info {
+      @include xmedium-up {
+        padding-top: 7px;
+      }
+      @include xlarge-up {
+        padding-top: 20px;
+      }
+    }
+    figure {
+      margin: 5px 10px 4px 0;
+      width: 60px;
+      float: left;
+      @include xmedium-up {
+        width: 48%;
+        margin-top: 0;
+        margin-right: 20px;
+      }
+      @include xlarge-up {
+        margin-right: 30px;
+      }
+      a {
+        height: 60px;
+        @include xmedium-up {
+          height: 150px;
+        }
+        @include xlarge-up {
+          height: 230px;
+        }
+      }
+    }
+    h3 {
+      font: 16px/20px $font-ovo;
+      text-transform: none;
+      margin: 0;
+      @include xmedium-up {
+        font-size: 22px;
+        line-height: 26px;
+        padding-top: 13px;
+        margin-bottom: 7px;
+      }
+      @include xlarge-up {
+        font-size: 26px;
+        line-height: 26px;
+        padding-top: 20px;
+      }
+    }
+    h4 {
+      font: 12px/16px $font-mulilight;
+      text-transform: uppercase;
+      padding-right: 10px;
+      @include xmedium-up {
+        font-size: 14px;
+      }
+      @include xlarge-up {
+        font-size: 18px;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+/* exhibitions end */
+
+.main-info {
+  position: relative;
+  @include medium-up {
+    margin-bottom: 38px;
+  }
+  .row {
+    @include xmedium-up {
+      display: flex;
+      position: relative;
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 33%;
+        top: 63px;
+        bottom: 82px;
+        width: 1px;
+        background-color: #e6e9ee;
+        @include xlarge-up {
+          bottom: 105px;
+        }
+      }
+      &:after {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 67%;
+        top: 63px;
+        bottom: 82px;
+        width: 1px;
+        background-color: #e6e9ee;
+        @include xlarge-up {
+          bottom: 105px;
+        }
+      }
+    }
+    > div {
+      margin-bottom: 45px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      @include xmedium-up {
+        margin-bottom: 0;
+      }
+      @include xmedium-up {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 46px;
+      }
+      @include xlarge-up {
+        padding-bottom: 72px;
+      }
+    }
+  }
+  .more {
+    @include xmedium-up {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+  }
+  h3 {
+    text-align: center;
+    @include xmedium-up {
+      font-size: 24px;
+      margin-bottom: 35px;
+    }
+    @include xlarge-up {
+      font-size: 36px;
+      line-height: 46px;
+      margin-bottom: 34px;
+    }
+  }
+  h4 {
+    font: 16px/20px $font-ovo;
+    position: relative;
+    padding-top: 8px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    @include xmedium-up {
+      font-size: 18px;
+      line-height: 20px;
+    }
+    @include xlarge-up {
+      font-size: 22px;
+      line-height: 26px;
+      padding-top: 20px;
+    }
+    &:after {
+      background-color: #ff3a1a;
+      content: "";
+      height: 2px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 10px;
+      transition: width .3s;
+    }
+    &:hover {
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+  .about {
+    text-align: center;
+    font: 16px/18px $font-ovo;
+    margin-bottom: 28px;
+    @include xmedium-up {
+      font-size: 18px;
+      line-height: 20px;
+      padding-right: 30px;
+      margin-bottom: 0;
+    }
+    @include xlarge-up {
+      font-size: 22px;
+      line-height: 26px;
+    }
+    ul {
+      text-align: left;
+      margin: 0 0 28px 22px;
+      padding-top: 15px;
+      @include xmedium-up {
+        padding: 26px 0 28px 0;
+        margin-left: 16px;
+      }
+      @include xlarge-up {
+        padding: 35px 0 28px;
+        margin-left: 77px;
+      }
+    }
+  }
+  .info-list {
+    margin-left: 8px;
+    padding-top: 6px;
+    margin-bottom: 22px;
+    @include xmedium-up {
+      padding-right: 20px;
+    }
+    @include xlarge-up {
+      padding-top: 2px;
+      padding-right: 0;
+    }
+    li {
+      overflow: hidden;
+      padding-left: 0;
+      margin-bottom: 17px;
+      @include xmedium-up {
+        margin-bottom: 26px;
+      }
+      &:before {
+        display: none;
+      }
+    }
+    .date {
+      width: 35px;
+      float: left;
+      color: #656d78;
+      font-size: 12px;
+      line-height: 16px;
+      text-align: center;
+      margin: 6px 27px 0 0;
+      @include xmedium-up {
+        font-size: 14px;
+        width: 56px;
+        margin: 6px 10px 0 0;
+      }
+      @include xlarge-up {
+        font-size: 18px;
+        line-height: 20px;
+        width: 92px;
+        margin-top: 20px;
+      }
+    }
+    .logo {
+      width: 50px;
+      float: left;
+      margin-right: 20px;
+      @include xmedium-up {
+        width: 68px;
+      }
+      @include xlarge-up {
+        width: 155px;
+      }
+      img {
+        max-width: 100%;
+        max-height: 35px;
+        display: block;
+        margin: 0 auto;
+        @include xlarge-up {
+          max-height: none;
+        }
+      }
+    }
+    .description {
+      overflow: hidden;
+    }
+  }
+  .news {
+    margin-bottom: 25px;
+    @include xmedium-up {
+      margin-bottom: 0;
+    }
+  }
+  .associations {
+    .info-list {
+      margin-left: 0;
+      @include xmedium-up {
+        padding-left: 45px;
+      }
+      li {
+        margin-bottom: 20px;
+        @include xmedium-up {
+          margin-bottom: 26px;
+        }
+      }
+    }
+  }
+}
+
+/* main-info end */

@@ -1,0 +1,210 @@
+@import "../global";
+@import "../_core/variables";
+@import "../libs/variables";
+@import "../libs/mixins";
+
+.search-results {
+  .heading {
+    color: #656d78;
+    text-align: center;
+    @include xlarge-up {
+      font-size: 18px;
+      padding-bottom: 33px;
+    }
+  }
+  h1 {
+    @include xlarge-up {
+      margin-bottom: 8px;
+    }
+  }
+  .search-filter {
+    padding-bottom: 10px;
+    .search {
+      @include xlarge-up {
+        padding: 15px 32px;
+      }
+    }
+    .btn-submit {
+      float: right;
+      margin: 0 0 0 40px;
+      @include xmedium-up {
+        margin-top: 5px;
+      }
+      @include xlarge-up {
+        margin-top: 10px;
+        margin-left: 60px;
+      }
+      path {
+        fill: $color-red;
+      }
+    }
+    .delete {
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      right: 45px;
+      top: 18px;
+      background: url('#{$path-images}/close_hover.svg') no-repeat;
+      background-size: 15px 15px;
+      z-index: 10;
+      cursor: pointer;
+      display: none;
+      @include xmedium-up {
+        top: 23px;
+      }
+      @include xlarge-up {
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+        right: 96px;
+        top: 30px;
+      }
+    }
+  }
+}
+
+/* search results end */
+
+.search-area {
+  overflow: hidden;
+  /* options-filter */
+  .options-filter {
+    padding-bottom: 20px;
+    @include xmedium-up {
+      float: left;
+      width: 210px;
+      margin-right: 50px;
+    }
+    @include xlarge-up {
+      margin-right: 110px;
+    }
+    h4 {
+      color: #aab2bd;
+      border-bottom: 1px solid #e6e9ee;
+      padding-bottom: 2px;
+      margin-bottom: 20px;
+      @include xlarge-up {
+        margin-bottom: 35px;
+      }
+    }
+    li {
+      padding: 0;
+      margin-bottom: 30px;
+      a {
+        color: #808080;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+      }
+      @include xlarge-up {
+        font-size: 18px;
+      }
+      &:before {
+        display: none;
+      }
+      &.active {
+        a {
+          color: $color-black;
+        }
+        em {
+          color: $color-red;
+        }
+      }
+    }
+    em {
+      font-style: normal;
+      position: absolute;
+      right: -5px;
+      top: -10px;
+      color: #1f2226;
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+  .jcf-radio {
+    display: none !important;
+  }
+  /* options-filter end  */
+}
+
+/* search list */
+.search-list {
+  overflow: hidden;
+  @include xmedium-up {
+    padding-top: 28px;
+  }
+  ul {
+    li {
+      overflow: hidden;
+      padding: 15px 0;
+      border-top: 1px solid #e6e9ee;
+      margin: 0 !important;
+      color: #434a54;
+      @include xmedium-up {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+      }
+      @include xlarge-up {
+        padding: 45px 80px 30px;
+        font-size: 20px;
+        line-height: 30px;
+      }
+      &:before {
+        display: none;
+      }
+    }
+  }
+  h3 {
+    margin-top: 10px;
+    @include xlarge-up {
+      margin-bottom: 9px;
+    }
+  }
+  h4 {
+    font-size: 14px;
+    font-family: $font-mulilight;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    @include xlarge-up {
+      font-size: 18px;
+    }
+    a {
+      color: #434a54;
+    }
+  }
+  .date, .category {
+    display: block;
+    color: #aab2bd;
+    font-family: $font-mulilight;
+    @include xlarge-up {
+      font-size: 18px;
+      line-height: 25px;
+    }
+  }
+  .more {
+    text-align: left;
+    @include xmedium-up {
+      text-align: right;
+      width: 200px;
+    }
+    @include xlarge-up {
+      width: 300px;
+    }
+    a {
+      &:before {
+        left: auto;
+        right: 0;
+      }
+    }
+  }
+  .description {
+    padding-bottom: 15px;
+    @include xmedium-up {
+      padding-right: 25px;
+    }
+  }
+}
+
+/* search list end */

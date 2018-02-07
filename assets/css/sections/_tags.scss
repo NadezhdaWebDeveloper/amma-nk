@@ -1,0 +1,48 @@
+div.tags {
+  @include xlarge-up {
+    padding-bottom: 32px;
+  }
+  ul {
+    margin-bottom: -10px;
+    li {
+      padding: 0;
+      margin: 0 0 10px;
+      display: inline-block;
+      vertical-align: middle;
+      &:first-child {
+        font-family: $font-ovo;
+        margin-right: 10px;
+        @include xlarge-up {
+          font-size: 20px;
+          line-height: 22px;
+          margin-right: 22px;
+        }
+      }
+      @include xlarge-up {
+        padding-left: 0;
+        margin-right: 6px;
+      }
+      &:before {
+        display: none;
+      }
+    }
+  }
+  label {
+    cursor: pointer;
+    margin: 0;
+    padding: 3px 10px 6px;
+    line-height: 24px;
+    border: 1px solid #e6e9ee;
+    font-size: 16px;
+    color: #1f2226;
+    @include medium-up {
+      padding: 5px 18px 9px;
+    }
+    &.jcf-label-active {
+      border-color: #4fc0e8;
+    }
+  }
+  .jcf-checkbox {
+    display: none;
+  }
+}

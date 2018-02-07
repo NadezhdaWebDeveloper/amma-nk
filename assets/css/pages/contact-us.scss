@@ -1,0 +1,144 @@
+@import "../global";
+@import "../_core/variables";
+@import "../libs/variables";
+@import "../libs/mixins";
+@import "../sections/info-area";
+
+.info-area {
+  figure {
+    @include small-up {
+      width: 50%;
+      float: right;
+    }
+  }
+  @include xlarge-up {
+    margin-bottom: 34px;
+  }
+  p {
+    font-family: $font-ovo;
+    @include xlarge-up {
+      font-size: 26px;
+    }
+  }
+}
+
+dl.contacts-list {
+  margin-bottom: 0;
+  dt {
+    color: #aab2bd;
+  }
+  a {
+    color: #434a54;
+    &:hover {
+      color: #434a54;
+    }
+  }
+}
+
+.contacts-area {
+  .info {
+    margin-bottom: 20px;
+    font-family: $font-ovo;
+    max-width: 400px;
+    @include xlarge-up {
+      max-width: 600px;
+      font-size: 26px;
+      line-height: 30px;
+      padding-top: 36px;
+    }
+    .link {
+      text-transform: none;
+      font-size: 14px;
+      @include xlarge-up {
+        font-size: 26px;
+        line-height: 30px;
+      }
+      &:before {
+        background-color: $color-pink;
+      }
+    }
+  }
+}
+
+/* contacts-form */
+.contacts-form {
+  @include xlarge-up {
+    margin-left: 7px;
+  }
+  .form-group {
+    position: relative;
+    @include xlarge-up {
+      margin-bottom: 32px;
+    }
+    &:after {
+      background-color: $color-pink;
+      content: "";
+      height: 1px;
+      left: 0;
+      position: absolute;
+      bottom: 0;
+      width: 10px;
+    }
+  }
+  .form-control {
+    color: #000;
+    border-color: #e6e9ee;
+    padding: 0 10px 0 15px;
+    @include xlarge-up {
+      height: 40px;
+      padding-left: 18px;
+    }
+    &:focus {
+      border-color: $color-pink;
+    }
+  }
+  .form-control::-moz-placeholder {
+    color: #aab2bd;
+  }
+
+  .form-control:-ms-input-placeholder {
+    color: #aab2bd;
+  }
+
+  .form-control::-webkit-input-placeholder {
+    color: #aab2bd;
+  }
+  textarea.form-control {
+    padding-top: 10px;
+    height: 156px;
+  }
+  .form-group.textarea {
+    margin-top: 20px;
+    &:after {
+      bottom: auto;
+      top: 0;
+    }
+  }
+  .btn {
+    &:after {
+      background: $color-pink;
+    }
+    &:hover {
+      border-color: $color-pink;
+    }
+  }
+  .note {
+    font-family: $font-mulilight;
+    color: #aab2bd;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 12px;
+    @include xlarge-up {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+  .form-footer {
+    @include xmedium-up {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+/* contacts-form end */

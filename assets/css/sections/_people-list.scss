@@ -1,0 +1,87 @@
+.people-list {
+  @include xlarge-up {
+    padding-top: 47px;
+  }
+  ul {
+    @include small-up {
+      font-size: 0;
+      line-height: 0;
+    }
+    @include xmedium-up {
+      margin-bottom: 0;
+    }
+    @include xlarge-up {
+      margin-right: -26px;
+      margin-bottom: -84px;
+    }
+    li {
+      padding: 0;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 18px;
+      @include small-up {
+        width: 50%;
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 20px;
+      }
+      @include xmedium-up {
+        width: 25%;
+        margin-bottom: 40px;
+      }
+      @include xlarge-up {
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 96px;
+        padding-left: 0;
+      }
+      &:before {
+        display: none;
+      }
+    }
+  }
+  h3 {
+    position: relative;
+    padding-top: 8px;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+    display: inline-block;
+    vertical-align: top;
+    @include xlarge-up {
+      padding-top: 27px;
+    }
+    &:after {
+      background-color: #ff3a1a;
+      content: "";
+      height: 2px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 10px;
+      transition: width .3s;
+    }
+    &:hover {
+      &:after {
+        width: 100%;
+      }
+    }
+    a {
+      color: #aab2bd;
+      span {
+        color: #1f2226;
+      }
+    }
+  }
+  h4 {
+    font: 16px/20px $font-primary;
+    text-transform: uppercase;
+    color: #aab2bd;
+    @include xlarge-up {
+      font-size: 18px;
+      margin-bottom: 21px;
+    }
+  }
+  p {
+    margin-bottom: 0;
+  }
+}

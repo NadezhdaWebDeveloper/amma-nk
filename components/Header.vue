@@ -1,0 +1,9 @@
+<template>
+	<nav>
+		<ul>
+			<li>item1</li>
+			<li>item1</li>
+			<li>item1</li>
+		</ul>
+	</nav>
+</template>

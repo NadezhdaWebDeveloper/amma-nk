@@ -1,0 +1,69 @@
+.artwork-table {
+  margin-bottom: 20px;
+  @include xsmall-up {
+    display: table;
+    width: 100%;
+    border-top: 2px solid #000;
+  }
+  .table-line {
+    border-bottom: 1px solid #e6e9ee;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    @include xsmall-up {
+      display: table-row;
+      width: 100%;
+    }
+  }
+  .title {
+    font-family: $font-ovo;
+    color: #1f2226;
+    margin-bottom: 10px;
+    @include xsmall-up {
+      display: table-cell;
+      vertical-align: middle;
+      border-bottom: 1px solid #e6e9ee;
+      border-right: 1px solid #e6e9ee;
+      padding: 20px;
+    }
+    @include xlarge-up {
+      font-size: 22px;
+      line-height: 26px;
+      width: 230px;
+      padding: 16px 20px 15px 0;
+    }
+  }
+  .info {
+    @include xsmall-up {
+      display: table-cell;
+      vertical-align: middle;
+      border-bottom: 1px solid #e6e9ee;
+      padding: 20px;
+    }
+    @include xlarge-up {
+      padding: 14px 0 14px 95px;
+    }
+    em {
+      font-style: normal;
+      color: #aab2bd;
+    }
+  }
+  dt {
+    float: left;
+    width: 160px;
+    color: #aab2bd;
+    @include xlarge-up {
+      width: 242px;
+    }
+  }
+  dd {
+    overflow: hidden;
+  }
+  address {
+    @include xlarge-up {
+      margin-bottom: 30px;
+    }
+  }
+  #map {
+    height: 300px !important;
+  }
+}

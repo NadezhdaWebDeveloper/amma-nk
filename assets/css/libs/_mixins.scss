@@ -1,0 +1,65 @@
+@import "variables";
+
+@mixin dots() {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin mask() {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+}
+
+@mixin bg($posX: null, $posY: null, $sizeX: null, $sizeY: null) {
+  background: {
+    repeat: no-repeat;
+    position: $posX $posY;
+    size: $sizeX $sizeY;
+  }
+}
+
+//mixins for media
+@mixin small-up {
+  @media screen and (min-width: $small-breakpoint) {
+    @content;
+  }
+}
+
+@mixin xsmall-up {
+  @media screen and (min-width: $xsmall-breakpoint) {
+    @content;
+  }
+}
+
+@mixin medium-up {
+  @media screen and (min-width: $medium-breakpoint) {
+    @content;
+  }
+}
+
+@mixin xmedium-up {
+  @media screen and (min-width: $xmedium-breakpoint) {
+    @content;
+  }
+}
+
+@mixin large-up {
+  @media screen and (min-width: $large-breakpoint) {
+    @content;
+  }
+}
+
+@mixin xlarge-up {
+  @media screen and (min-width: $xlarge-breakpoint) {
+    @content;
+  }
+}
+

@@ -1,0 +1,53 @@
+@import "../global";
+@import "../_core/variables";
+@import "../libs/variables";
+@import "../libs/mixins";
+@import "../sections/info-area";
+
+.no-dev {
+  .content {
+    @include xlarge-up {
+      padding-top: 170px;
+      padding-bottom: 70px;
+    }
+  }
+}
+
+.error {
+  max-width: 500px;
+  margin: 0 auto;
+  @include xmedium-up {
+    max-width: none;
+  }
+  h1 {
+    @include xlarge-up {
+      margin-bottom: 35px;
+    }
+  }
+  h2 {
+    color: #1f2226;
+  }
+  .info-area {
+    @include xlarge-up {
+      margin-bottom: 50px;
+    }
+  }
+  .link {
+    @include xmedium-up {
+      left: 15px;
+    }
+  }
+}
+
+/* error end */
+
+.buttons {
+  text-align: center;
+  .btn {
+    margin-bottom: 10px;
+    @include xmedium-up {
+      min-width: 290px;
+      margin: 0 12px 10px;
+    }
+  }
+}

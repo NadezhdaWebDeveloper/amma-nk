@@ -1,0 +1,109 @@
+@import "../global";
+@import "../_core/variables";
+@import "../libs/variables";
+@import "../libs/mixins";
+@import "../sections/tabs";
+@import "../sections/info-area";
+@import "../sections/people-list";
+
+.associations {
+  @include medium-up {
+    font-size: 0;
+    line-height: 0;
+    margin: 0 -15px;
+  }
+  @include xlarge-up {
+    margin-bottom: -30px;
+  }
+  .item {
+    margin-bottom: 25px;
+    @include medium-up {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+      padding: 0 15px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    @include xlarge-up {
+      font-size: 18px;
+      line-height: 27px;
+      margin-bottom: 62px;
+    }
+  }
+  .image {
+    text-align: center;
+    margin-bottom: 15px;
+    @include medium-up {
+      width: 150px;
+      float: left;
+      margin-right: 20px;
+    }
+    @include xlarge-up {
+      width: 210px;
+      margin-right: 30px;
+    }
+  }
+  img {
+    max-width: 100%;
+  }
+  .info {
+    overflow: hidden;
+    p {
+      &:last-of-type {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  h4 {
+    @include xlarge-up {
+      font-size: 26px;
+      line-height: 30px;
+    }
+  }
+}
+
+/* associations end  */
+
+.info-area.about-director {
+  figure {
+    overflow: hidden;
+    @include xmedium-up {
+      overflow: visible;
+    }
+  }
+  @include xlarge-up {
+    padding-bottom: 17px;
+    margin-bottom: 0;
+  }
+}
+
+/* info-area end  */
+
+.video-area {
+  .video {
+    @include xmedium-up {
+      float: left;
+      width: 39%;
+      margin-right: 100px;
+      height: 300px;
+    }
+    @include xlarge-up {
+      margin-right: 185px;
+      height: 400px;
+    }
+  }
+  .description {
+    overflow: hidden;
+    p {
+      &:last-of-type {
+        margin-bottom: 30px;
+        @include xlarge-up {
+          margin-bottom: 50px;
+        }
+      }
+    }
+  }
+}
+
+/* video-area end  */

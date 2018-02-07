@@ -1,0 +1,38 @@
+@import "../libs/variables";
+
+@font-face {
+  font-family: 'muliregular';
+  src: url('#{$path-fonts}/muli-webfont.eot');
+  src: url('#{$path-fonts}/muli-webfont.eot?#iefix') format('embedded-opentype'),
+  url('#{$path-fonts}/muli-webfont.woff2') format('woff2'),
+  url('#{$path-fonts}/muli-webfont.woff') format('woff'),
+  url('#{$path-fonts}/muli-webfont.ttf') format('truetype'),
+  url('#{$path-fonts}/muli-webfont.svg#muliregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'mulilight';
+  src: url('#{$path-fonts}/muli-light-webfont.eot');
+  src: url('#{$path-fonts}/muli-light-webfont.eot?#iefix') format('embedded-opentype'),
+  url('#{$path-fonts}/muli-light-webfont.woff2') format('woff2'),
+  url('#{$path-fonts}/muli-light-webfont.woff') format('woff'),
+  url('#{$path-fonts}/muli-light-webfont.ttf') format('truetype'),
+  url('#{$path-fonts}/muli-light-webfont.svg#mulilight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'ovoregular';
+  src: url('#{$path-fonts}/ovo-regular-webfont.eot');
+  src: url('#{$path-fonts}/ovo-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('#{$path-fonts}/ovo-regular-webfont.woff2') format('woff2'),
+  url('#{$path-fonts}/ovo-regular-webfont.woff') format('woff'),
+  url('#{$path-fonts}/ovo-regular-webfont.ttf') format('truetype'),
+  url('#{$path-fonts}/ovo-regular-webfont.svg#ovoregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

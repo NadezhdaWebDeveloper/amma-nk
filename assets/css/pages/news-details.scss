@@ -1,0 +1,47 @@
+@import "../global";
+@import "../_core/variables";
+@import "../libs/variables";
+@import "../libs/mixins";
+@import "../sections/info-area";
+@import "../sections/single-article";
+@import "../sections/images-gallery";
+@import "../sections/slick";
+
+.no-dev {
+  .content {
+    @include xlarge-up {
+      padding-top: 170px;
+    }
+  }
+}
+
+h1 {
+  @include xlarge-up {
+    margin-bottom: 56px;
+  }
+}
+
+.info-area {
+  .back {
+    .icon-left {
+      &:hover {
+        color: $color-purple;
+      }
+      &:before {
+        color: $color-purple;
+      }
+    }
+  }
+  .bottom-buttons {
+    a.link {
+      &:before {
+        background-color: $color-purple;
+      }
+    }
+    a.icon-share {
+      &:before {
+        color: $color-purple;
+      }
+    }
+  }
+}

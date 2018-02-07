@@ -1,0 +1,407 @@
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+  color: #1f2226;
+}
+
+h1 {
+  font: 35px/40px $font-ovo;
+  text-align: center;
+  margin-bottom: 15px;
+  @include xmedium-up {
+    margin-bottom: 30px;
+  }
+  @include medium-up {
+    font-size: 60px;
+    line-height: 64px;
+    margin-bottom: 38px;
+  }
+}
+
+h2 {
+  font: 30px/36px $font-ovo;
+  margin-bottom: 12px;
+  @include xmedium-up {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  @include xlarge-up {
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 15px;
+  }
+}
+
+h3 {
+  font: 20px/24px $font-ovo;
+  margin-bottom: 7px;
+  @include xmedium-up {
+    font-size: 26px;
+    margin-bottom: 17px;
+  }
+}
+
+h4 {
+  font: 18px/26px $font-ovo;
+  margin-bottom: 10px;
+  @include xlarge-up {
+    font-size: 20px;
+  }
+}
+
+p {
+  margin: 0 0 10px;
+  @include xlarge-up {
+    margin-bottom: 21px;
+  }
+}
+
+a {
+  color: $color-primary;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/*buttons*/
+.btn {
+  -moz-user-select: none;
+  background-image: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  min-width: 160px;
+  min-height: 40px;
+  font: 12px/37px $font-primary;
+  border: 2px solid #e6e9ee;
+  padding: 0 10px;
+  color: #1f2226;
+  text-transform: uppercase;
+  background-color: transparent;
+  -webkit-appearance: none;
+  position: relative;
+  transition: border-color .3s;
+  @include xmedium-up {
+    font-size: 14px;
+    min-width: 170px;
+  }
+  @include xlarge-up {
+    font-size: 18px;
+    line-height: 44px;
+    min-width: 190px;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: -2px;
+    width: 10px;
+    height: 2px;
+    background: $color-red;
+    transition: background .3s;
+  }
+  @include xlarge-up {
+    height: 50px;
+  }
+  &:hover {
+    border-color: $color-red;
+    &:after {
+      background: #808080;
+    }
+  }
+}
+
+.btn-submit {
+  width: 23px;
+  height: 17px;
+  border: none;
+  background: none;
+  padding: 0;
+  svg {
+    display: block;
+    width: 100%;
+  }
+}
+
+a.link {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  text-transform: uppercase;
+  padding-top: 8px;
+  font-size: 12px;
+  @include medium-up {
+    font-size: 16px;
+  }
+  @include xlarge-up {
+    font-size: 18px;
+    line-height: 36px;
+  }
+  &:before {
+    background-color: #ff3a1a;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: width 0.3s;
+    width: 10px;
+  }
+  &:hover {
+    &:before {
+      width: 100%;
+    }
+  }
+}
+
+a.icon-acrobat {
+  padding-left: 25px;
+  margin-top: 8px;
+  padding-top: 0 !important;
+  &:before {
+    display: none;
+  }
+  &:after {
+    content: '\e800';
+    font-family: "fontello";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    color: #f6bb43;
+    transform: translateY(-50%);
+  }
+}
+
+.more {
+  text-align: center;
+}
+
+/*form styles*/
+.form-group {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 19px;
+}
+
+.form-control {
+  background: none;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #808080;
+  padding: 0 0 5px;
+  margin: 0;
+  color: $color-white;
+  font: 14px/16px $font-mulilight;
+  box-shadow: none;
+  transition: border-color .3s;
+  height: 34px;
+  -webkit-appearance: none;
+  border-radius: 0;
+  @include xlarge-up {
+    font-size: 18px;
+    line-height: 20px;
+    height: 40px;
+  }
+  &:hover {
+    border-color: $color-white;
+  }
+  &:focus {
+    border-color: $color-white;
+  }
+  &.wpcf7-not-valid,
+  &.error {
+    border-color: $color-pink !important;
+    color: $color-pink !important;
+    &:focus {
+      border-color: $color-pink !important;
+    }
+  }
+}
+
+.form-control::-moz-placeholder {
+  color: $color-white;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+  color: $color-white;
+  opacity: 1;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: $color-white;
+  opacity: 1;
+}
+
+.form-control:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+.form-control:focus:-moz-placeholder {
+  opacity: 0;
+}
+
+.form-control:focus::-moz-placeholder {
+  opacity: 0;
+}
+
+.form-control:focus:-ms-input-placeholder {
+  opacity: 0;
+}
+
+.form-control.wpcf7-not-valid::-moz-placeholder {
+  color: $color-pink !important;
+}
+
+.form-control.wpcf7-not-valid:-ms-input-placeholder {
+  color: $color-pink !important;
+}
+
+.form-control.wpcf7-not-valid::-webkit-input-placeholder {
+  color: $color-pink !important;
+}
+
+.screen-reader-response, .wpcf7-not-valid-tip, .wpcf7-display-none {
+  display: none !important;
+}
+
+.wpcf7-validation-errors, .wpcf7-mail-sent-ok {
+  display: block !important;
+}
+
+.wpcf7-response-output {
+  margin-top: 15px;
+}
+
+.form-group > textarea {
+  float: left;
+  width: 100%;
+}
+
+textarea.form-control {
+  border: 1px solid #808080;
+}
+
+input[type="button"],
+input[type="submit"] {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+textarea.form-control {
+  resize: none;
+  height: 158px;
+}
+
+label {
+  color: #aab2bd;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0 10px;
+}
+
+blockquote {
+  padding: 0 33px;
+  margin: 44px auto;
+  position: relative;
+  font: 18px/22px $font-ovo;
+  @include xlarge-up {
+    font-size: 26px;
+    line-height: 36px;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 14px;
+    background-repeat: no-repeat;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAABTElEQVQ4T3VSwXHCMBDcM6N/YlOBKQFKgAqC/MgzGJhUACVABZmA+eaB6ABKCCUkDQQDfw+5zDm2EQL0k+72dm+1BOfso/6ImcPAJEO3JvcfHTc9ohEDMyobjs+vj79ZtmagCWATmKRzNVjHAwbe5Z2JOhU41fEaQPsecBf128QsPTmwvpxvcvD+PPFQU6rx8PF2cFlTHX8BCIlo7C/nU6nn4LLAzNP6ajG+48NE3mtK+eVwslgrOfdY3ZUo1bEYMLB3scHHp5fw5HkiWc6FkQIujZIdhr5JZjbYNgrAd2CSRlm/AEuxplTLNswB48Iwm7lwcOsp1SkHuOCiJ1dIu25vQkQjWyoBW98kLXmT8JyybH+VNuaIbk2WxsAktwJUzRD5//8c9Zdg1pURFnOVZ+DTZq/iWUiTEISFaWM3ZWm3p0GUfymYZ8FqYf4A7D6w6dI6HtkAAAAASUVORK5CYII=');
+  }
+  p {
+    &:last-child {
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        left: auto;
+        bottom: 8px;
+        width: 15px;
+        height: 14px;
+        margin-left: 16px;
+        background-repeat: no-repeat;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAABS0lEQVQ4T3WSzXHCMBCF39rDPRjSAJQAJUAFQT7kGAxMKoASoISAkwLspAJcQlxCaCD83Rm0mXUsoyigk7Tab7X79AgAtoPhnIimsmfmRfP9dSZ7s75V1PGABEALwEYD4X0a57RX0ZiBFzuZiGZBslqY2E5FXyVoQge/VmvTPhxNmXluwwAOjTQOLJide8gDdHx4amnPSxjo2AlM1G8mq0xiNx7ISC6Pj891fTqt7QI2XBT4P94vLKsU5dOcXVjiu3CUgFmVORe4uFTRGkCvUN1q2xTchqMeMUuOrNuwr3X77uNtY+vgwMuqbftlAvIgjbuuwn9g5rCCRfWz58l/goBJkMZLF96pSPwwFqM00rhdwZYYWSON+y5oC2r0KGCr4sHXuuvOWoIiVN22L5k5ZM4zMBHPXmm3+AXXtlQaRF2bsbLnYKh85tzt6AftPrOvofD/UQAAAABJRU5ErkJggg==');
+        @include xlarge-up {
+          bottom: 20px;
+        }
+      }
+    }
+  }
+  strong,
+  cite {
+    display: block;
+  }
+}
+
+.no-scroll,
+.no-scroll body {
+  overflow: hidden;
+}
+
+.alignleft {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+.alignright {
+  margin: 0 0 10px 10px;
+}
+
+.aligncenter {
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.content {
+  ul {
+    margin-bottom: 28px;
+    li {
+      padding-left: 33px;
+      margin-bottom: 5px;
+      @include xmedium-up {
+        margin-bottom: 12px;
+      }
+      @include xlarge-up {
+        margin-bottom: 20px;
+        padding-left: 40px;
+        &:before {
+          font-size: 22px;
+          line-height: 26px;
+          top: 2px;
+        }
+      }
+      position: relative;
+      &:before {
+        content: '\f1ce';
+        position: absolute;
+        left: 0;
+        top: 0;
+        font: 16px/20px "fontello";
+        color: #ff3a1a;
+      }
+    }
+  }
+  /* default ul end */
+  ol {
+    list-style-type: decimal;
+    padding-left: 25px;
+    li {
+      padding: 0 0 10px 5px;
+      @include xlarge-up {
+        padding-bottom: 20px;
+      }
+    }
+  }
+  /* default ol end */
+}

@@ -1,0 +1,83 @@
+@import "../global";
+@import "../_core/variables";
+@import "../libs/variables";
+@import "../libs/mixins";
+@import "../sections/info-area";
+@import "../sections/posts";
+@import "../sections/tags";
+
+.info-area {
+  @include xlarge-up {
+    margin-bottom: 50px;
+  }
+  .link {
+    &:before {
+      background-color: $color-blue;
+    }
+  }
+}
+
+.pagination {
+  .previouspostslink, .nextpostslink {
+    &:before {
+      background-color: $color-blue;
+    }
+  }
+}
+
+.publications {
+  .tags {
+    margin-bottom: 20px;
+    &.selected {
+      form {
+        max-height: 2000px;
+      }
+      .more {
+        display: none;
+      }
+    }
+    form {
+      max-height: 85px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      transition: max-height 1s;
+      @include xmedium-up {
+        max-height: 100px;
+      }
+    }
+    &.full {
+      form {
+        max-height: 2000px;
+      }
+    }
+    .more {
+      text-align: right;
+    }
+  }
+  .more-tags {
+    padding-right: 5px;
+    position: relative;
+    display: none;
+    @include xlarge-up {
+      font-size: 16px;
+      line-height: 18px;
+    }
+    &:before {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $color-blue;
+      width: auto;
+      margin: 0;
+    }
+  }
+}
+
+.posts .post {
+  h3 {
+    &:after {
+      background-color: $color-blue;
+    }
+  }
+}
