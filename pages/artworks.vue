@@ -110,8 +110,7 @@
 						<li v-for="(artwork, idx) in artworks" :key="idx">
 							<div class="item">
 								<figure>
-									<a href="#"
-										style="background-image: url('http://amma-test.bigdropinc.net/wp-content/uploads/2017/08/GAV-C-PA001-JSS-b-1.jpg');"></a>
+									<a :href="artwork.link" :style="{backgroundImage: `url('${(artwork.image_url !== undefined) ? artwork.image_url : '' }')`}"></a>
 								</figure>
 								<h3><a href="#">{{ artwork.artist }}</a></h3>
 								<h4><a href="#">{{ artwork.title }}</a></h4>
@@ -173,7 +172,7 @@ export default {
       if (item._embedded["wp:featuredmedia"] !== undefined) {
         item._embedded["wp:featuredmedia"].map(el => {
           artwork.image_url = el.source_url;
-        });
+				});				
       }
       if (item._embedded["wp:term"] !== undefined) {
         item._embedded["wp:term"].map(el => {
@@ -181,8 +180,8 @@ export default {
             artwork.category = i.name;
           });
         });
-      }
-      // artwork.link = (new URL(item.link)).pathname;
+			}
+      artwork.link = item.link;
       this.artworks.push(artwork);
     });
   }
