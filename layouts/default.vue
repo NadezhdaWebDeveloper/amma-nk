@@ -1,5 +1,5 @@
 <template>
-  <div class="no-dev">
+  <div class="wrapper">
     <app-header></app-header>
     <main class="content">
       <nuxt/>

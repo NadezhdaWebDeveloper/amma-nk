@@ -6,6 +6,7 @@
 @import "sections/styles-guide";
 @import "sections/custom-forms";
 @import "sections/jquery.fancybox";
+@import "pages/collection";
 
 html, body {
   height: 100%;
@@ -32,7 +33,7 @@ body {
   min-height: 100%;
   height: 100%;
   position: relative;
-  opacity: 0;
+  // opacity: 0;
   transition: opacity .7s;
   @include small-up {
     display: flex;
