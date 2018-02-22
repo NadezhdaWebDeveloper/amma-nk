@@ -129,6 +129,7 @@
 </template>
 
 <script>
+import getUrl from "../../helpers/getUrl"
 export default {
 	layout: 'collections',
   name: "Artworks",
@@ -159,8 +160,7 @@ export default {
           });
         });
 			}
-			artwork.link = item.link;
-			// console.log(item.link);
+			artwork.link = getUrl(item.link).pathname;			
       this.artworks.push(artwork);
     });
   }
