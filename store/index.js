@@ -13,7 +13,7 @@ export default () => {
     },
     actions: {
       getArtworks({ commit }, payload = {}) {
-        return api.get().then(response => {          
+        return api.getArtworks().then(response => {          
           commit('setArtworks', response)
         })
       }

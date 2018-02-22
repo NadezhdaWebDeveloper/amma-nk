@@ -16,16 +16,7 @@
 			<!--/lang-switcher-->
 			
 			<div class="inner">
-				<ul class="main-nav">
-					<li v-for="(item, idx) in menuItems" :key="idx" v-bind:class="[item.classes, {'menu-item-has-children': item.children}]">
-						<router-link :to="item.url">{{ item.title }}</router-link>
-						<ul v-if="item.children">
-							<li v-for="(subItem, index) in item.children" :key="index">
-								<router-link :to="subItem.url">{{ subItem.title }}</router-link>
-							</li>
-						</ul>
-					</li>
-				</ul>
+				<MenuNav/>
 				<!--/main-nav-->
 			</div>
 			<!--/inner-->
@@ -84,52 +75,31 @@
 </template>
 
 <script>
-import axios from "axios";
+import MenuNav from './MenuNav';
 
 export default {
-  name: "Header",
+	name: "Header",
+	components: {
+		MenuNav
+	},
   data() {
     return {
-			menuItems: []
     };
 	},
-	methods: {
-		createMenu(items) {
-			if (items.length) {
-				checkSubmenu(items);				
-				this.menuItems = items;
-			}
-			function checkSubmenu(items) {
-				items.map((item, idx) => {					
-					item.url = (new URL(item.url)).pathname + (new URL(item.url)).search;
-					if (item.hasOwnProperty('children')) {
-						checkSubmenu(item.children);
-					}
-				});
-			}
-		}
-	},
 	beforeCreate() {
-		console.log('Header before Create');
-		axios.get("http://amma-test.bigdropinc.net/wp-json/wp-api-menus/v2/menus/18")
-      .then(res => {
-				this.createMenu(res.data.items);
-      })
-      .catch(e => {
-        this.errors.push(e);
-      });
+		console.log('Header before Create'); //
 	},
   created() {
-		console.log('Header created');
+		console.log('Header created'); //
 	},
 	beforeMounted() {
 		console.log('Header before Mounted');
 	},
 	mounted() {
-		console.log('Header mounted');
+		console.log('Header mounted'); //
 	},
 	beforeUpdate() {
-		console.log('Header before Update');
+		console.log('Header before Update'); //
 	},
 	update() {
 		console.log('Header update');

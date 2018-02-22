@@ -49,5 +49,13 @@ module.exports = {
     // '@/assets/css/global.css',
     // SCSS file in the project
     '@/assets/css/global.scss'
-  ]
+  ],
+
+  plugins: [
+    {src: '~/plugins/check-mobile.js', ssr: false}
+  ],
+
+  router: {
+    linkActiveClass: 'active'
+  },
 }
