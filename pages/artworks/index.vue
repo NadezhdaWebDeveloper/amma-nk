@@ -1,28 +1,22 @@
 <template>
 	<div>
 		<h2>Artworks</h2>
+		<button @click="addQuery">add query</button>
 		<div class="search-filter">
 			<form>
 				<div class="search">
 					<div class="inner">
 						<button type="submit" class="btn-submit">
-								<svg version="1.1" id="Layer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-					viewBox="0 0 21 16" style="enable-background:new 0 0 21 16;" xml:space="preserve">
-				<style type="text/css">
-					.st0 {
-						fill: #434A54;
-					}
-				</style>
-				<path class="st0" d="M9.3,0.8C6.3-0.9,2.5,0.1,0.8,3.1S0.1,10,3.1,11.7c2.6,1.5,5.9,0.9,7.8-1.4l1.5,0.9c-0.2,0.5-0.1,1,0.4,1.3
-					l5.7,3.3c0.5,0.3,1.1,0.1,1.4-0.4l1.1-1.8c0.3-0.5,0.1-1.1-0.4-1.4l-5.7-3.3c-0.5-0.3-1-0.1-1.3,0.3L12,8.3C13,5.6,11.9,2.4,9.3,0.8
-					z M3.4,11.1c-2.6-1.5-3.5-5-2-7.6s4.9-3.6,7.5-2s3.5,5,2,7.6S6,12.6,3.4,11.1z M14.5,9.5l5.7,3.3c0.2,0.1,0.2,0.3,0.1,0.5l-1.1,1.8
-					c-0.1,0.2-0.3,0.2-0.5,0.1L13.1,12c-0.2-0.1-0.2-0.3-0.1-0.5L14,9.6C14.1,9.5,14.3,9.4,14.5,9.5z M13.2,9.8l-0.5,0.8l-1.4-0.8
-					c0.1-0.1,0.2-0.3,0.3-0.4c0.1-0.1,0.1-0.3,0.2-0.4L13.2,9.8z"/>
-				</svg>
+								<svg version="1.1" id="Layer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 21 16" style="enable-background:new 0 0 21 16;" xml:space="preserve">
+									<path fill="#434A54" d="M9.3,0.8C6.3-0.9,2.5,0.1,0.8,3.1S0.1,10,3.1,11.7c2.6,1.5,5.9,0.9,7.8-1.4l1.5,0.9c-0.2,0.5-0.1,1,0.4,1.3
+									l5.7,3.3c0.5,0.3,1.1,0.1,1.4-0.4l1.1-1.8c0.3-0.5,0.1-1.1-0.4-1.4l-5.7-3.3c-0.5-0.3-1-0.1-1.3,0.3L12,8.3C13,5.6,11.9,2.4,9.3,0.8
+									z M3.4,11.1c-2.6-1.5-3.5-5-2-7.6s4.9-3.6,7.5-2s3.5,5,2,7.6S6,12.6,3.4,11.1z M14.5,9.5l5.7,3.3c0.2,0.1,0.2,0.3,0.1,0.5l-1.1,1.8
+									c-0.1,0.2-0.3,0.2-0.5,0.1L13.1,12c-0.2-0.1-0.2-0.3-0.1-0.5L14,9.6C14.1,9.5,14.3,9.4,14.5,9.5z M13.2,9.8l-0.5,0.8l-1.4-0.8
+									c0.1-0.1,0.2-0.3,0.3-0.4c0.1-0.1,0.1-0.3,0.2-0.4L13.2,9.8z"/>
+								</svg>
 						</button>
 						<div class="input-holder">
-								<input type="text" class="form-control"
-										placeholder="Search by keyword, title, artist, or object number">
+								<input type="text" class="form-control" placeholder="Search by keyword, title, artist, or object number">
 						</div>
 					</div>
 				</div>
@@ -30,11 +24,11 @@
 				<div class="filter-checkboxes">
 					<label>Filter By Type</label>
 					<ul>
-						<li><label><input type="checkbox" checked>Painting</label></li>
-						<li><label><input type="checkbox">Sculpture</label></li>
-						<li><label><input type="checkbox">Other Media</label></li>
-						<li><label><input type="checkbox" checked>Drawing</label></li>
-						<li><label><input type="checkbox" checked>Photography</label></li>
+						<li><label @click.prevent="addQuery('Painting')"><input type="checkbox">Painting</label></li>
+						<li><label @click.prevent="addQuery('Sculpture')"><input type="checkbox">Sculpture</label></li>
+						<li><label @click.prevent="addQuery"><input type="checkbox">Other Media</label></li>
+						<li><label @click.prevent="addQuery"><input type="checkbox">Drawing</label></li>
+						<li><label @click.prevent="addQuery"><input type="checkbox">Photography</label></li>
 					</ul>
 					<label>Show Only</label>
 					<ul>
@@ -95,12 +89,12 @@
 		</div>
 		<!--/toolbar-sorting-->
 		<div class="collection-wrap">
-			<ul class="collection-gallery">
-				
+			<ul class="collection-gallery">				
 				<li v-for="(artwork, idx) in artworks" :key="idx">
 					<div class="item">
 						<figure>
-							<a :href="artwork.link" :style="{backgroundImage: `url('${(artwork.image_url !== undefined) ? artwork.image_url : '' }')`}"></a>
+							<nuxt-link :to="artwork.link" :style="{backgroundImage: `url('${(artwork.image_url !== undefined) ? artwork.image_url : '' }')`}"></nuxt-link>
+							<!-- <a :href="artwork.link" :workId="artwork.link" :style="{backgroundImage: `url('${(artwork.image_url !== undefined) ? artwork.image_url : '' }')`}"></a> -->
 						</figure>
 						<h3><a href="#">{{ artwork.artist }}</a></h3>
 						<h4><a href="#">{{ artwork.title }}</a></h4>
@@ -129,41 +123,25 @@
 </template>
 
 <script>
-import getUrl from "../../helpers/getUrl"
 export default {
 	layout: 'collections',
   name: "Artworks",
-  fetch({ store, params }) {
-    return store.dispatch("getArtworks", params);
-  },
+  fetch({ store, params, route }) {
+		console.log('fetch');
+		console.log('route.query', route.query);
+		return store.dispatch("getArtworks", {params, route});
+	},
   data() {
     return {
-      artworks: []
+      artworks: this.$store.state.artworks
     };
-  },
-  created() {
-    this.$store.state.artworks.map(item => {
-      let artwork = {
-        artist: item.acf.artwork_artist_label,
-        year: item.acf.artwork_year,
-        title: item.title.rendered
-      };
-      if (item._embedded["wp:featuredmedia"] !== undefined) {
-        item._embedded["wp:featuredmedia"].map(el => {
-          artwork.image_url = el.source_url;
-				});				
-      }
-      if (item._embedded["wp:term"] !== undefined) {
-        item._embedded["wp:term"].map(el => {
-          el.map(i => {
-            artwork.category = i.name;
-          });
-        });
-			}
-			artwork.link = getUrl(item.link).pathname;			
-      this.artworks.push(artwork);
-    });
-  }
+	},
+	methods:{
+		addQuery(queryStr){
+			// console.log('route', this.$route.query);
+			// this.$router.push({path: '/artworks', query: {types: queryStr}})
+		}		
+	}
 };
 </script>
 

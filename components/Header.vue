@@ -87,22 +87,22 @@ export default {
     };
 	},
 	beforeCreate() {
-		console.log('Header before Create'); //
+		// console.log('Header before Create'); //
 	},
   created() {
-		console.log('Header created'); //
+		// console.log('Header created'); //
 	},
 	beforeMounted() {
-		console.log('Header before Mounted');
+		// console.log('Header before Mounted');
 	},
 	mounted() {
-		console.log('Header mounted'); //
+		// console.log('Header mounted'); //
 	},
 	beforeUpdate() {
-		console.log('Header before Update'); //
+		// console.log('Header before Update'); //
 	},
 	update() {
-		console.log('Header update');
+		// console.log('Header update');
 	}
 };
 </script>
