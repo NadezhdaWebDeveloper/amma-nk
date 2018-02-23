@@ -14,7 +14,6 @@ export default () => {
     },
     actions: {
       async getArtworks({ commit }, payload = {}) {
-        console.log('HELLLOOOO');
         const {data} = await api.getArtworks();
         let finalData = [];
 
@@ -42,19 +41,25 @@ export default () => {
                 imageUrl: item.sizes.thumbnail,
                 imageWidth: item.sizes['thumbnail-width'],
                 imageHeight: item.sizes['thumbnail-height']
+              },
+              medium: {
+                imageUrl: item.sizes.medium,
+                imageWidth: item.sizes['medium-width'],
+                imageHeight: item.sizes['medium-height']
               }
             });
           });
           finalData.push(artwork);
         });
-        if (payload.slug) {
-          finalData = finalData.find(item => item.slug === payload.slug);
+        
+        if (payload.params.slug !== undefined) {
+          finalData = finalData.find(item => item.slug === payload.params.slug);
         }
-        // if (payload.route.query.types) {
-        //   finalData = finalData.filter(el => {
-        //     return el.category === payload.route.query.types;
-        //   });
-        // }
+        if (payload.route.query.types) {
+          finalData = finalData.filter(el => {
+            return el.category === payload.route.query.types;
+          });
+        }
         commit('setArtworks', finalData);     
       }
     }    
