@@ -14,7 +14,8 @@ export default () => {
     },
     actions: {
       async getArtworks({ commit }, payload = {}) {
-        const {data} = await api.getArtworks();
+        console.log('ROUT: ', payload.route);
+        const {data} = await api.getArtworks(payload.route);
         let finalData = [];
 
         data.map(item => {
@@ -52,14 +53,14 @@ export default () => {
           finalData.push(artwork);
         });
         
-        if (payload.params.slug !== undefined) {
-          finalData = finalData.find(item => item.slug === payload.params.slug);
-        }
-        if (payload.route.query.types) {
-          finalData = finalData.filter(el => {
-            return el.category === payload.route.query.types;
-          });
-        }
+        // if (payload.params.slug !== undefined) {
+        //   finalData = finalData.find(item => item.slug === payload.params.slug);
+        // }
+        // if (payload.route.query.types) {
+        //   finalData = finalData.filter(el => {
+        //     return el.category === payloadpayload.route.query.types;
+        //   });
+        // }
         commit('setArtworks', finalData);     
       }
     }    

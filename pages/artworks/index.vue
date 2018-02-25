@@ -94,7 +94,6 @@
 					<div class="item">
 						<figure>
 							<nuxt-link :to="artwork.link" :style="{backgroundImage: `url('${(artwork.gallery[0].medium.imageUrl !== undefined) ? artwork.gallery[0].medium.imageUrl : '' }')`}"></nuxt-link>
-							<!-- <a :href="artwork.link" :workId="artwork.link" :style="{backgroundImage: `url('${(artwork.image_url !== undefined) ? artwork.image_url : '' }')`}"></a> -->
 						</figure>
 						<h3><a href="#">{{ artwork.artist }}</a></h3>
 						<h4><a href="#">{{ artwork.title }}</a></h4>
@@ -127,9 +126,9 @@ export default {
 	layout: 'collections',
   name: "Artworks",
   fetch({ store, params, route }) {
-		console.log('fetch');
-		console.log('route.query', route.query);
-		return store.dispatch("getArtworks", {params, route});
+		// console.log('fetch');
+		// console.log('route.query', route.query);
+		return store.dispatch("getArtworks", {route}); //{params, route}
 	},
   data() {
     return {
@@ -138,7 +137,7 @@ export default {
 	},
 	methods:{
 		addQuery(queryStr){
-			console.log('route', this.$route.query);
+			// console.log('route', this.$route.query);
 			this.$router.push({path: '/artworks', query: {types: queryStr}})
 		}		
 	}
