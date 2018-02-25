@@ -14,7 +14,8 @@ export default () => {
     },
     actions: {
       async getArtworks({ commit }, payload = {}) {
-        console.log('ROUT: ', payload.route);
+        console.log('Action getArtworks()');
+        
         const {data} = await api.getArtworks(payload.route);
         let finalData = [];
 
