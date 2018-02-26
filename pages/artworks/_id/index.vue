@@ -126,19 +126,16 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
 	layout: "collections",
+	name: "ArtworkId",
 	data() {
     return {
-			artwork: this.$store.state.artworks
+			artwork: this.$store.state.artworks[0]
 		}
-  },
-	fetch({ store, params, route }) {
-		console.log(params);
-		console.log('route', route);
-		return store.dispatch("getArtworks", params);
 	},
-  
+	fetch({ store, route }) {
+		return store.dispatch("getArtworks", { route });
+	}
 };
 </script>

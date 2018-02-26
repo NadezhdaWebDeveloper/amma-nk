@@ -38,31 +38,15 @@
         <label>Decade</label>
         <div class="select-wrap">
           <select>
-              <option value="v1">Before 1920</option>
-              <option value="v3">Option 2</option>
-              <option value="v3">Option 3</option>
-              <option value="v3">Option 4</option>
-              <option value="v3">Option 5</option>
-              <option value="v3">Option 5</option>
-              <option value="v3">Option 5</option>
-              <option value="v3">Option 5</option>
-              <option value="v3">Option 5</option>
-              <option value="v3">Option 5</option>
+            <option v-for="(year, key) in artworksFilters['artwork_year']" :key="key" v-bind:value="year">
+              {{ year }}
+            </option>
           </select>
         </div>
         <label>Sort By</label>
         <div class="select-wrap">
           <select>
-              <option value="v1">Most Viewed</option>
-              <option value="v3">Option 2</option>
-              <option value="v3">Option 3</option>
-              <option value="v3">Option 4</option>
-              <option value="v3">Option 5</option>
-              <option value="v3">Option 5</option>
-              <option value="v3">Option 5</option>
-              <option value="v3">Option 5</option>
-              <option value="v3">Option 5</option>
-              <option value="v3">Option 5</option>
+            <option v-for="(item, key) in artworksFilters.orderby" :key="key" :value="item">{{ item }}</option>
           </select>
         </div>
       </div>
@@ -76,10 +60,7 @@
       Per page:
       <div class="select-wrap">
         <select>
-          <option value="1">12</option>
-          <option value="2">13</option>
-          <option value="3">14</option>
-          <option value="4">15</option>
+          <option v-for="(item, key) in artworksFilters['per_page']" :key="key" :value="item">{{ item }}</option>
         </select>
       </div>
     </div>
@@ -97,10 +78,9 @@ export default {
 			artworksFilters: {}
     };
 	},
-	beforeCreate() {
+	create() {
 		api.getArtworksSettings()
       .then(res => {
-        console.log(res.data);
 				this.artworksFilters = res.data;
       })
       .catch(error => {
@@ -111,7 +91,7 @@ export default {
   methods:{
 		addQuery(queryStr){
 			// console.log('route', this.$route.query);
-			console.log('addQuery', queryStr);			
+			// console.log('addQuery', queryStr);			
 			this.$router.push({path: '/artworks', query: {types: queryStr}})
 		}		
 	}

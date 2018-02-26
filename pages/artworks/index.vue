@@ -43,11 +43,8 @@ export default {
   components: {
     ArtworksFilters
   },
-  fetch({ store, route }) {
-		// console.log('fetch');
-		// console.log('route.query', route.query);
-		console.log('fetch', route);
-		return store.dispatch("getArtworks", {route}); //{params, route}
+	fetch({ store, route }) {
+		return store.dispatch("getArtworks", { route });
 	},
   data() {
     return {
