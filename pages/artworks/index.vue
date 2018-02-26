@@ -128,7 +128,7 @@ export default {
 			// artworks: this.$store.state.artworks,
 			artworksFilters: {},
 			checkedTypes: [],
-			perPage: ''
+			perPage: 4
     };
 	},
 	watch:{
@@ -160,25 +160,18 @@ export default {
 	},
 	methods: {
 		test(){
-			console.log(this.$route);
 			this.$store.dispatch("getArtworks", this.$route);
 		},
 		setApiUrl(link, id ) {
 			return link;
 		},
-		addQuery(queryStr){
-			console.log('queryStr', queryStr);
-			console.log(this.checkedTypes);
-
-			let typesStr = this.checkedTypes.join('%2C');
-			console.log(typesStr);
-			
+		addQuery(){
+			let typesStr = this.checkedTypes.join('%2C');			
 
 			let queryObj = {
 				page: 1,
 				types: typesStr,
-				per_page: this.perPage,
-				order_by: 'Default'
+				per_page: this.perPage
 			};
 			
 			this.$router.push({path: '/artworks', query: queryObj})
