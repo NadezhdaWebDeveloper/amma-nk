@@ -5,19 +5,25 @@ import getUrl from "@/helpers/getUrl"
 export default () => { 
   return new Vuex.Store({
     state: {
-      artworks: {}
+      artworks: {},
+      artworksHeaders: {}
     },
     getters:{
-      artworks: state => state.artworks
+      artworks: state => state.artworks,
+      artworksHeaders: state => state.artworksHeaders
     },
     mutations: {
-      setArtworks: (state, data) => {
+      setArtworks: (state, {data, headers}) => {
         state.artworks = data;
+        state.artworksHeaders = {
+          totalWorks: state.artworksHeaders['x-wp-total'],
+          totalPages: state.artworksHeaders['x-wp-totalpages']
+        };
       }
     },
     actions: {
       async getArtworks({ commit }, route) {
-        const { data } = await api.getArtworks(route);
+        const { headers, data } = await api.getArtworks(route);
 
         let mapData = [];
         let finalData = [];
@@ -64,7 +70,13 @@ export default () => {
           });
           finalData.push(artwork);
         });
-        commit('setArtworks', finalData);
+
+        let payload = {
+          data: finalData,
+          headers: headers
+        }
+
+        commit('setArtworks', payload);
       }
     }
   })

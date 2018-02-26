@@ -63,7 +63,7 @@
 		</div>
 		<!--/search-filter-->
 		<div class="toolbar-sorting">
-			<div class="items-showing">Showing: <span>70</span> Works</div>
+			<div class="items-showing">Showing: <span>{{ totalWorks }}</span> Works</div>
 			<div class="sorting">
 				Per page:
 				<div class="select-wrap">
@@ -128,7 +128,9 @@ export default {
 			// artworks: this.$store.state.artworks,
 			artworksFilters: {},
 			checkedTypes: [],
-			perPage: 4
+			perPage: 4,
+			totalWorks: 0,
+			
     };
 	},
 	watch:{
@@ -136,6 +138,8 @@ export default {
 	},
 	created() {
 		this.test();
+
+		console.log('artworksHeaders', this.artworksHeaders); // ['x-wp-total']
 
 		if(this.$route.query.hasOwnProperty()) {
 			this.addQuery()
@@ -156,7 +160,7 @@ export default {
 	// 	mapState(['artworks']),
 	// ),
 	computed: {
-		...mapState(['artworks']),
+		...mapState(['artworks', 'artworksHeaders']),
 	},
 	methods: {
 		test(){
@@ -165,7 +169,7 @@ export default {
 		setApiUrl(link, id ) {
 			return link;
 		},
-		addQuery(){
+		addQuery(){			
 			let typesStr = this.checkedTypes.join('%2C');			
 
 			let queryObj = {
@@ -174,7 +178,10 @@ export default {
 				per_page: this.perPage
 			};
 			
-			this.$router.push({path: '/artworks', query: queryObj})
+			this.$router.push({path: '/artworks', query: queryObj});
+
+
+			console.log('artworksHeaders', this.artworksHeaders.totalPages); // ['x-wp-total']
 		}	
 	}
 };
