@@ -78,7 +78,7 @@ export default {
 			artworksFilters: {}
     };
 	},
-	create() {
+	created() {
 		api.getArtworksSettings()
       .then(res => {
 				this.artworksFilters = res.data;
@@ -89,9 +89,7 @@ export default {
       });
   },
   methods:{
-		addQuery(queryStr){
-			// console.log('route', this.$route.query);
-			// console.log('addQuery', queryStr);			
+		addQuery(queryStr){		
 			this.$router.push({path: '/artworks', query: {types: queryStr}})
 		}		
 	}
