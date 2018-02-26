@@ -1,13 +1,15 @@
 <template>
 	<div>
 		<h2>Artworks</h2>
+
 		<ArtworksFilters/>
+		
 		<div class="collection-wrap">
 			<ul class="collection-gallery">				
 				<li v-for="(artwork, idx) in artworks" :key="idx">
 					<div class="item">
 						<figure>
-							<nuxt-link :to="artwork.link" :style="{backgroundImage: `url('${(artwork.gallery[0].medium.imageUrl !== undefined) ? artwork.gallery[0].medium.imageUrl : '' }')`}"></nuxt-link>
+							<nuxt-link :to="setApiUrl(artwork.link, artwork.id)" :style="{backgroundImage: `url('${(artwork.gallery[0].medium.imageUrl !== undefined) ? artwork.gallery[0].medium.imageUrl : '' }')`}"></nuxt-link>
 						</figure>
 						<h3><a href="#">{{ artwork.artist }}</a></h3>
 						<h4><a href="#">{{ artwork.title }}</a></h4>
@@ -50,6 +52,11 @@ export default {
     return {
       artworks: this.$store.state.artworks
     };
+	},
+	methods: {
+		setApiUrl(link, id ) {
+			return link;
+		}
 	}
 };
 </script>

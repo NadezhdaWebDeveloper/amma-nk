@@ -63,8 +63,6 @@ export default {
 			finalData.push(artwork);
 		});
 
-		console.log(finalData);
-
 		return finalData;
 
 		// return axios.get(`http://amma-test.bigdropinc.net/wp-json/wp/v2/artworks${slug}?_embed`) //&artwork_year=all&orderby=default
