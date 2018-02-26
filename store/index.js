@@ -18,7 +18,6 @@ export default () => {
     actions: {
       async getArtworks({ commit }, route) {
         const { data } = await api.getArtworks(route);
-        console.log(data);    
 
         let mapData = [];
         let finalData = [];
@@ -65,8 +64,6 @@ export default () => {
           });
           finalData.push(artwork);
         });
-
-        console.log('final data', finalData);
         commit('setArtworks', finalData);
       }
     }

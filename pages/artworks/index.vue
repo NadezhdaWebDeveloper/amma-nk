@@ -25,9 +25,15 @@
 					<label>Filter By Type</label>
 					<ul>
 						<li v-for="(type, idx) in artworksFilters.types" :key="idx">
-							<label @click.prevent="addQuery(type)">{{ type }}</label>
+							<label>
+								{{ type }}
+								<input type="checkbox" v-bind:value="type" v-model="checkedTypes" @change="addQuery(type)">
+							</label>
 						</li>
 					</ul>
+
+					{{checkedTypes}}
+
 					<label>Show Only</label>
 					<ul>
 						<li><label><input type="checkbox" checked>new-acquisition</label></li> 
@@ -61,7 +67,7 @@
 			<div class="sorting">
 				Per page:
 				<div class="select-wrap">
-					<select>
+					<select v-model="perPage" @change="addQuery()">
 						<option v-for="(item, key) in artworksFilters['per_page']" :key="key" :value="item">{{ item }}</option>
 					</select>
 				</div>
@@ -120,7 +126,9 @@ export default {
   data() {
     return {
 			// artworks: this.$store.state.artworks,
-			artworksFilters: {}
+			artworksFilters: {},
+			checkedTypes: [],
+			perPage: ''
     };
 	},
 	watch:{
@@ -128,6 +136,11 @@ export default {
 	},
 	created() {
 		this.test();
+
+		if(this.$route.query.hasOwnProperty()) {
+			this.addQuery()
+		}
+
 		api.getArtworksSettings()
       .then(res => {
 				this.artworksFilters = res.data;
@@ -137,20 +150,38 @@ export default {
 				throw new Error(error);
       });
 	},
-	computed: Object.assign(
-		{},
-		// mapGetters(['artworks']),
-		mapState(['artworks']),
-	),
+	// computed: Object.assign(
+	// 	{},
+	// 	// mapGetters(['artworks']),
+	// 	mapState(['artworks']),
+	// ),
+	computed: {
+		...mapState(['artworks']),
+	},
 	methods: {
 		test(){
+			console.log(this.$route);
 			this.$store.dispatch("getArtworks", this.$route);
 		},
 		setApiUrl(link, id ) {
 			return link;
 		},
 		addQuery(queryStr){
-			this.$router.push({path: '/artworks', query: {types: queryStr}})
+			console.log('queryStr', queryStr);
+			console.log(this.checkedTypes);
+
+			let typesStr = this.checkedTypes.join('%2C');
+			console.log(typesStr);
+			
+
+			let queryObj = {
+				page: 1,
+				types: typesStr,
+				per_page: this.perPage,
+				order_by: 'Default'
+			};
+			
+			this.$router.push({path: '/artworks', query: queryObj})
 		}	
 	}
 };
