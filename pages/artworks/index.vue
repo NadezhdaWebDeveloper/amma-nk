@@ -43,7 +43,7 @@
 				<div class="filter-selects">
 					<label>Decade</label>
 					<div class="select-wrap">
-						<select v-model="date">
+						<select v-model="decade">
 							<option v-for="(year, key) in artworksFilters['artwork_year']" :key="key" v-bind:value="year">
 								{{ year }}
 							</option>
@@ -51,7 +51,7 @@
 					</div>
 					<label>Sort By</label>
 					<div class="select-wrap">
-						<select>
+						<select v-model="sortBy">
 							<option v-for="(item, key) in artworksFilters.orderby" :key="key" :value="item">{{ item }}</option>
 						</select>
 					</div>
@@ -102,11 +102,11 @@
 				<span class="extend">...</span>
 				<a class="nextpostslink" rel="next" href="http://amma-dev.bigdropinc.net/artworks/page/2/">next</a> -->
 
-				<a class="previouspostslink" v-show="prevPage" rel="prev" @click.prevent="addQuery(--page)">prev</a>
+				<a class="previouspostslink" rel="prev">prev</a>
 				<a class="page larger" :title="`Page ${page}`" v-for="(page, key) in artworksHeaders.totalPages" 
 					:class="[{'current': page === 4}]" :key="key"
 					@click.prevent="addQuery(page)">{{ page }}</a>
-				<a class="nextpostslink" v-show="nextPage" rel="next" @click.prevent="addQuery(++page)">next</a>
+				<a class="nextpostslink" rel="next">next</a>
 			</div>
 		</div>
 		<!--/pagination-->
@@ -132,15 +132,29 @@ export default {
     return {
 			artworksFilters: {},
 			checkedTypes: [],
+			sortBy: 'Default',
 			perPage: this.$route.query.per_page || 4,
-			date: '1931-1940',
-			page: this.$route.query.page || 1,
-			prevPage: this.$route.query.page - 1 > 0 ? this.$route.query.page - 1 : false, 
-			nextPage: this.$route.query.page + 1 >= 49 ? this.$route.query.page + 1 : false
+			decade: '1931-1940',
+			page: this.$route.query.page || 1
     };
 	},
 	watch:{
-		'$route': 'getArtworks'
+		'$route': 'getArtworks',
+		checkedTypes(arr) {
+			console.log('checked types', arr)
+		},
+		showOnly(val) {
+			console.log('show only New Acquisition', val);
+		},
+		decade(val) {
+			console.log('date', val);
+		},
+		page(val) {
+			console.log('page', val);
+		},
+		perPage(val) {
+			console.log('per_page', val);
+		}		
 	},
 	created() {
 		this.getArtworks();
@@ -158,11 +172,6 @@ export default {
 				throw new Error(error);
       });
 	},
-	// computed: Object.assign(
-	// 	{},
-	// 	// mapGetters(['artworks']),
-	// 	mapState(['artworks']),
-	// ),
 	computed: {
 		...mapState(['artworks', 'artworksHeaders']),
 	},
@@ -183,8 +192,6 @@ export default {
 			};
 			
 			this.$router.push({path: '/artworks', query: queryObj})
-
-			console.log(this.prevPage);
 		}	
 	}
 };

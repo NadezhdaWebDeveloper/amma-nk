@@ -8,10 +8,10 @@ export default () => {
       artworks: {},
       artworksHeaders: {}
     },
-    getters:{
-      artworks: state => state.artworks,
-      artworksHeaders: state => state.artworksHeaders
-    },
+    // getters:{
+    //   artworks: state => state.artworks,
+    //   artworksHeaders: state => state.artworksHeaders
+    // },
     mutations: {
       setArtworks: (state, {data, headers}) => {        
         state.artworks = data;
