@@ -21,19 +21,17 @@
 					</div>
 				</div>
 				<!--/search-->
+				{{checkedTypes}}
 				<div class="filter-checkboxes">
 					<label>Filter By Type</label>
 					<ul>
 						<li v-for="(type, idx) in artworksFilters.types" :key="idx">
 							<label>
 								{{ type }}
-								<input type="checkbox" v-bind:value="type" v-model="checkedTypes" @change="addQuery(type)">
+								<input type="checkbox" v-bind:value="type" v-model="checkedTypes" @change="addQuery()">
 							</label>
 						</li>
 					</ul>
-
-					{{checkedTypes}}
-
 					<label>Show Only</label>
 					<ul>
 						<li><label><input type="checkbox" checked>new-acquisition</label></li> 
@@ -45,7 +43,7 @@
 				<div class="filter-selects">
 					<label>Decade</label>
 					<div class="select-wrap">
-						<select>
+						<select v-model="date">
 							<option v-for="(year, key) in artworksFilters['artwork_year']" :key="key" v-bind:value="year">
 								{{ year }}
 							</option>
@@ -63,7 +61,7 @@
 		</div>
 		<!--/search-filter-->
 		<div class="toolbar-sorting">
-			<div class="items-showing">Showing: <span>{{ totalWorks }}</span> Works</div>
+			<div class="items-showing">Showing: <span>{{ artworksHeaders.totalWorks }}</span> Works</div>
 			<div class="sorting">
 				Per page:
 				<div class="select-wrap">
@@ -93,6 +91,7 @@
 		<!--/collection-->
 		<div class="pagination">
 			<div class="wp-pagenavi">
+				<!-- <a class="previouspostslink" rel="prev" href="http://amma-dev.bigdropinc.net/artworks/">prev</a>
 				<span class="current">1</span>
 				<a class="page larger" title="Page 2" href="http://amma-dev.bigdropinc.net/artworks/page/2/">2</a>
 				<a class="page larger" title="Page 3" href="http://amma-dev.bigdropinc.net/artworks/page/3/">3</a>
@@ -101,7 +100,13 @@
 				<span class="extend">...</span>
 				<a class="larger page" title="Page 10" href="http://amma-dev.bigdropinc.net/artworks/page/10/">10</a>
 				<span class="extend">...</span>
-				<a class="nextpostslink" rel="next" href="http://amma-dev.bigdropinc.net/artworks/page/2/">next</a>
+				<a class="nextpostslink" rel="next" href="http://amma-dev.bigdropinc.net/artworks/page/2/">next</a> -->
+
+				<a class="previouspostslink" v-show="prevPage" rel="prev" @click.prevent="addQuery(--page)">prev</a>
+				<a class="page larger" :title="`Page ${page}`" v-for="(page, key) in artworksHeaders.totalPages" 
+					:class="[{'current': page === 4}]" :key="key"
+					@click.prevent="addQuery(page)">{{ page }}</a>
+				<a class="nextpostslink" v-show="nextPage" rel="next" @click.prevent="addQuery(++page)">next</a>
 			</div>
 		</div>
 		<!--/pagination-->
@@ -110,7 +115,7 @@
 
 <script>
 import api from '@/api';
-import {mapGetters, mapState} from 'vuex'
+import {mapState} from 'vuex'
 
 export default {
 	layout: 'collections',
@@ -125,21 +130,20 @@ export default {
 	// },
   data() {
     return {
-			// artworks: this.$store.state.artworks,
 			artworksFilters: {},
 			checkedTypes: [],
-			perPage: 4,
-			totalWorks: 0,
-			
+			perPage: this.$route.query.per_page || 4,
+			date: '1931-1940',
+			page: this.$route.query.page || 1,
+			prevPage: this.$route.query.page - 1 > 0 ? this.$route.query.page - 1 : false, 
+			nextPage: this.$route.query.page + 1 >= 49 ? this.$route.query.page + 1 : false
     };
 	},
 	watch:{
-		'$route': 'test'
+		'$route': 'getArtworks'
 	},
 	created() {
-		this.test();
-
-		console.log('artworksHeaders', this.artworksHeaders); // ['x-wp-total']
+		this.getArtworks();		
 
 		if(this.$route.query.hasOwnProperty()) {
 			this.addQuery()
@@ -163,25 +167,24 @@ export default {
 		...mapState(['artworks', 'artworksHeaders']),
 	},
 	methods: {
-		test(){
+		getArtworks(){
 			this.$store.dispatch("getArtworks", this.$route);
 		},
 		setApiUrl(link, id ) {
 			return link;
 		},
-		addQuery(){			
-			let typesStr = this.checkedTypes.join('%2C');			
+		addQuery(pageNum){
+			let typesStr = this.checkedTypes.join('%2C');
 
 			let queryObj = {
-				page: 1,
-				types: typesStr,
+				page: pageNum,
+				types: typesStr === '' ? undefined : typesStr,
 				per_page: this.perPage
 			};
 			
-			this.$router.push({path: '/artworks', query: queryObj});
+			this.$router.push({path: '/artworks', query: queryObj})
 
-
-			console.log('artworksHeaders', this.artworksHeaders.totalPages); // ['x-wp-total']
+			console.log(this.prevPage);
 		}	
 	}
 };

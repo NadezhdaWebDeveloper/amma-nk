@@ -13,11 +13,11 @@ export default () => {
       artworksHeaders: state => state.artworksHeaders
     },
     mutations: {
-      setArtworks: (state, {data, headers}) => {
+      setArtworks: (state, {data, headers}) => {        
         state.artworks = data;
         state.artworksHeaders = {
-          totalWorks: state.artworksHeaders['x-wp-total'],
-          totalPages: state.artworksHeaders['x-wp-totalpages']
+          totalWorks: +headers['x-wp-total'],
+          totalPages: +headers['x-wp-totalpages']
         };
       }
     },
