@@ -143,7 +143,7 @@ export default {
 		'$route': 'getArtworks'
 	},
 	created() {
-		this.getArtworks();		
+		this.getArtworks();
 
 		if(this.$route.query.hasOwnProperty()) {
 			this.addQuery()
