@@ -63,7 +63,7 @@
 							<label>Sort By</label>
 							<div class="select-wrap">
 								<select v-model="sortBy">
-									<option v-for="(item, key) in artworksFilters.orderby" :key="key" :value="item">{{ item }}</option>
+									<option v-for="(item, key) in artworksFilters.orderby" :key="key" :value="key">{{ item }}</option>
 								</select>
 							</div>
 						</div>
@@ -103,7 +103,7 @@
 				<div class="pagination">
 					<div class="wp-pagenavi">
 						<a class="previouspostslink" v-show="page !== 1" @click.prevent="--page" rel="prev">prev</a>
-						<a class="page larger" :title="`Page ${item}`" v-if="item !== page" v-for="(item, key) in artworksHeaders.totalPages" :key="key"
+						<a class="page larger" :title="`Page ${item}`"  v-if="item != page" v-for="(item, key) in artworksHeaders.totalPages" :key="key"
 							@click.prevent="page = item">{{ item }}</a>
 						<span class="current" v-else>{{ page }}</span>
 						<!-- <span class="extend">...</span> -->
@@ -139,11 +139,11 @@ export default {
     return {
 			artworksFilters: {},
 			checkedTypes: [],
-			sortBy: 'Default',
+			sortBy: this.$route.query.orderby || 'default',
 			perPage: this.$route.query.per_page || 4,
-			decade: 'All',
+			decade: this.$route.query.artwork_year || 'All',
 			page: this.$route.query.page || 1,
-			showOnly: ''
+			showOnly: this.$route.query['new-acquisition'] || ''
     };
 	},
 	watch:{
@@ -165,7 +165,7 @@ export default {
 			let newQuery = {...oldQuery, artwork_year: val};
 			this.$router.push({query: newQuery});
 		},
-		sortBy(val) {
+		sortBy(val) {			
 			let oldQuery = this.$route.query;
 			let newQuery = {...oldQuery, orderby: val};
 			this.$router.push({query: newQuery});
@@ -179,39 +179,27 @@ export default {
 			let oldQuery = this.$route.query;
 			let newQuery = {...oldQuery, per_page: val};
 			this.$router.push({query: newQuery});
-		}		
+		}
 	},
 	created() {
 		this.getArtworks();
-
-		if (this.$route.query.hasOwnProperty()) {
-			this.addQuery()
-		}
-
 		api.getArtworksSettings()
       .then(res => this.artworksFilters = res.data)
-      .catch(error => { throw new Error(error) });
+			.catch(error => { throw new Error(error) });
+			
+			console.log('page', this.page);
+			
 	},
 	computed: {
-		...mapState(['artworks', 'artworksHeaders']),
+		...mapState([
+			'artworks',
+			'artworksHeaders'
+		]),
 	},
 	methods: {
-		getArtworks() {		
-			console.log('this.$route.query', this.$route.query);
-			
+		getArtworks() {			
 			this.$store.dispatch("getArtworks", this.$route.query);
-		},
-		addQuery(pageNum){
-			let typesStr = this.checkedTypes.join('%2C');
-
-			let queryObj = {
-				page: pageNum,
-				types: typesStr === '' ? undefined : typesStr,
-				per_page: this.perPage
-			};
-			
-			this.$router.push({path: '/artworks', query: queryObj})
-		}	
+		}
 	}
 };
 </script>

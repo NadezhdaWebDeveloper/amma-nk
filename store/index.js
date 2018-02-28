@@ -28,7 +28,7 @@ export default () => {
         for (const key in route) {
           if (route.hasOwnProperty(key)) {
             if ( route[key] !== undefined ) {
-              if ( key === 'types' || key === 'artwork_year' || key === 'orderby' ) {
+              if ( key !== 'per_page' && key !== 'page' ) {
                 queryString += `&filter[${key}]=${route[key]}`;
               } else {
                 queryString += `&${key}=${route[key]}`;
