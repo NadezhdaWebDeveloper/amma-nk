@@ -62,6 +62,6 @@ module.exports = {
   ],
 
   router: {
-    linkActiveClass: 'active'
+    linkActiveClass: 'current-menu-item'
   },
 }

@@ -1,11 +1,20 @@
 <template>
-	<div>
-		<h2>Art loans</h2>
+	<div class="collection">
+		<div class="container">
+			<h1>The Collection</h1>
+			<div class="tabs-wrap">
+				<PageTabsNav/>
+				<h2>Art loans</h2>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+import PageTabsNav from '@/components/PageTabsNav'
 export default {
-	layout: 'collections'
+	components: {
+		PageTabsNav
+	}
 }
 </script>

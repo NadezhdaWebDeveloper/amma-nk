@@ -23,7 +23,21 @@ export default () => {
     },
     actions: {
       async getArtworks({ commit }, route) {
-        const { headers, data } = await api.getArtworks(route);
+        let queryString = ``;
+
+        for (const key in route) {
+          if (route.hasOwnProperty(key)) {
+            if ( route[key] !== undefined ) {
+              if ( key === 'types' || key === 'artwork_year' || key === 'orderby' ) {
+                queryString += `&filter[${key}]=${route[key]}`;
+              } else {
+                queryString += `&${key}=${route[key]}`;
+              }
+            }
+          }
+        }
+
+        const { headers, data } = await api.getArtworks(queryString);
 
         let mapData = [];
         let finalData = [];
