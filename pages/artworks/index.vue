@@ -3,12 +3,6 @@
 		<div class="container">
 			<h1>The Collection</h1>
 			<div class="tabs-wrap">
-				<!-- <ul class="tabs-nav">
-					<nuxt-link tag="li" to="/about-the-collection"><a>About the Collection</a></nuxt-link>
-					<nuxt-link tag="li" to="/artworks/"><a>Artworks</a></nuxt-link>
-					<nuxt-link tag="li" to="/artists/"><a>Artists Index</a></nuxt-link>
-					<nuxt-link tag="li" to="/art-loans/"><a>Art Loans</a></nuxt-link>
-				</ul> -->
 				<PageTabsNav/>
 				<!--/tabs-nav-->
 				<h2>Artworks</h2>
@@ -37,15 +31,19 @@
 							<ul>
 								<li v-for="(type, idx) in artworksFilters.types" :key="idx">
 									<label>
-										<input type="checkbox" v-bind:value="type" v-model="checkedTypes">
+										<input type="checkbox" :value="type" v-model="checkedTypes">
 										{{ type }}
 									</label>
 								</li>
 							</ul>
 							<label>Show Only</label>
 							<ul>
-								<li><label><input type="checkbox" checked v-model="showOnly">new-acquisition</label></li> 
-								<!-- {{artworksFilters['new-acquisition']}} -->
+								<li>
+									<label>
+										<input type="checkbox" v-model="showOnly">
+										{{artworksFilters['new-acquisition']}}
+									</label>
+								</li>
 							</ul>
 						</div>
 						<!--/filter-checkboxes-->
@@ -55,7 +53,7 @@
 							<div class="select-wrap">
 								<select v-model="decade">
 									<option>All</option>
-									<option v-for="(year, key) in artworksFilters['artwork_year']" :key="key" v-bind:value="year">
+									<option v-for="(year, key) in artworksFilters['artwork_year']" :key="key" :value="year">
 										{{ year }}
 									</option>
 								</select>
@@ -89,7 +87,7 @@
 						<li v-for="(artwork, idx) in artworks" :key="idx">
 							<div class="item">
 								<figure>
-									<nuxt-link :to="'' + artwork.id" :style="{backgroundImage: `url('${(artwork.gallery[0].medium.imageUrl !== undefined) ? artwork.gallery[0].medium.imageUrl : '' }')`}"></nuxt-link>
+									<nuxt-link :to="artwork.link" :style="{backgroundImage: `url('${(artwork.gallery[0].medium.imageUrl !== undefined) ? artwork.gallery[0].medium.imageUrl : '' }')`}"></nuxt-link>
 								</figure>
 								<h3><a href="#">{{ artwork.artist }}</a></h3>
 								<h4><a href="#">{{ artwork.title }}</a></h4>
@@ -117,8 +115,8 @@
 </template>
 
 <script>
-import api from '@/api';
-import {mapState} from 'vuex'
+import api from '@/api'
+import { mapState } from 'vuex'
 
 import PageTabsNav from '@/components/PageTabsNav'
 
@@ -140,9 +138,9 @@ export default {
 			artworksFilters: {},
 			checkedTypes: [],
 			sortBy: this.$route.query.orderby || 'default',
-			perPage: this.$route.query.per_page || 4,
+			perPage: +this.$route.query.per_page || 4,
 			decade: this.$route.query.artwork_year || 'All',
-			page: this.$route.query.page || 1,
+			page: +this.$route.query.page || 1,
 			showOnly: this.$route.query['new-acquisition'] || ''
     };
 	},
@@ -185,10 +183,7 @@ export default {
 		this.getArtworks();
 		api.getArtworksSettings()
       .then(res => this.artworksFilters = res.data)
-			.catch(error => { throw new Error(error) });
-			
-			console.log('page', this.page);
-			
+			.catch(error => { throw new Error(error) });			
 	},
 	computed: {
 		...mapState([

@@ -9,5 +9,9 @@ export default {
 	},
 	getArtworksSettings() {
 		return axios.get('http://amma-test.bigdropinc.net/wp-json/wp/v2/artworks-settings')
+	},
+	getArtwork(slug) {		
+		return axios.get(`http://amma-test.bigdropinc.net/wp-json/wp/v2/artworks?_embed${slug}`);
 	}
+	
 }
