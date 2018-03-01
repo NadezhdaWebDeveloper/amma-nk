@@ -81,9 +81,9 @@
 					</div>
 				</div>
 				<!--/toolbar-sorting-->
-				
-				<div class="collection-wrap">
-					<ul class="collection-gallery">				
+				<h3 style="text-align: center" v-if="artworksHeaders.totalWorks === 0">Not Found</h3>
+				<div v-else class="collection-wrap">					
+					<ul class="collection-gallery">
 						<li v-for="(artwork, idx) in artworks" :key="idx">
 							<div class="item">
 								<figure>
@@ -98,7 +98,7 @@
 					</ul>
 				</div>
 				<!--/collection-->
-				<div class="pagination">
+				<div v-show="artworksHeaders.totalWorks !== 0" class="pagination">
 					<div class="wp-pagenavi">
 						<a class="previouspostslink" v-show="page !== 1" @click.prevent="--page" rel="prev">prev</a>
 						<a class="page larger" :title="`Page ${item}`"  v-if="item != page" v-for="(item, key) in artworksHeaders.totalPages" :key="key"
@@ -192,7 +192,16 @@ export default {
 		]),
 	},
 	methods: {
-		getArtworks() {			
+		getArtworks() {
+			let route = null;
+			if ( Object.keys(this.$route.query).length === 0 ) {
+				route = {
+					per_page: this.perPage,
+					page: this.page
+				};
+			} else {
+				route = this.$route.query;
+			}
 			this.$store.dispatch("getArtworks", this.$route.query);
 		}
 	}

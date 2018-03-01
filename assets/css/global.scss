@@ -8,6 +8,7 @@
 @import "sections/jquery.fancybox";
 
 @import "pages/collection";
+@import "pages/contact-us";
 
 html, body {
   height: 100%;
@@ -69,6 +70,7 @@ body {
   .content {
     @include medium-up {
       padding-top: 145px;
+      min-height: calc(100vh - 301px);
     }
     @include xlarge-up {
       padding-top: 182px;

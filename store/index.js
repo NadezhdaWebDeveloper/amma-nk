@@ -7,14 +7,18 @@ export default () => {
     state: {
       artwork: {},
       artworks: {},
-      artworksHeaders: {}
+      artworksHeaders: {},
+      contactUsData: {}
     },
     // getters:{
     //   artworks: state => state.artworks,
     //   artworksHeaders: state => state.artworksHeaders
     // },
     mutations: {
-      setArtworks: (state, {data, headers}) => {        
+      setContactUsData: (state, data) => {
+        state.contactUsData = data;        
+      },
+      setArtworks: (state, {data, headers}) => {
         state.artworks = data;
         state.artworksHeaders = {
           totalWorks: +headers['x-wp-total'],
@@ -26,7 +30,12 @@ export default () => {
       }
     },
     actions: {
-      async getArtworks({ commit }, route) {
+      async getDataForContactUs({ commit }) {
+        let { data } = await api.getDataForContactUs();
+        commit('setContactUsData', data);
+      },
+
+      async getArtworks({ commit }, route) {        
         let queryString = ``;
         for (const key in route) {
           if (route.hasOwnProperty(key)) {
@@ -37,6 +46,9 @@ export default () => {
                 queryString += `&${key}=${route[key]}`;
               }
             }
+            if ( route['per_page'] === undefined ) {              
+              queryString += '&per_page=4';
+            } 
           }
         }
         const { headers, data } = await api.getArtworks(queryString);        
@@ -56,7 +68,7 @@ export default () => {
         });
       },
 
-      async getArtwork({ commit }, route) {        
+      async getArtwork({ commit }, route) {
         let query = route.params.id != undefined ? `&filter[name]=${route.params.id}` : '';
         const { data } = await api.getArtwork(query);
         data.map(item => {
@@ -70,7 +82,7 @@ export default () => {
         });
       },
 
-      artworkInit(context, item) {        
+      artworkInit(context, item) {
         let artwork = {
           id: item.id !== undefined ? item.id : '',
           artist: item.acf.artwork_artist_label !== undefined ? item.acf.artwork_artist_label : '',
