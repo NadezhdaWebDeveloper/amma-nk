@@ -49,13 +49,18 @@ module.exports = {
   },
 
   css: [
-    // Load a Node.js module directly (here it's a Sass file)
-    // 'bulma',
-    // CSS file in the project
-    // '@/assets/css/global.css',
-    // SCSS file in the project
     '@/assets/css/global.scss'
   ],
+
+  // modules: [
+  //   'nuxt-google-maps-module',
+  // ],
+  // google: {
+  //   key: "AIzaSyBL9AMx-tXllSKsq6mP7Hemvk7BCk5tLUI",
+  //   libraries: [
+  //     'places',
+  //   ],
+  // },
 
   plugins: [
     {src: '~/plugins/check-mobile.js', ssr: false}

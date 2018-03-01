@@ -2,13 +2,26 @@
 <div class="contact-us">
 		<div class="container">
 				<h1 id="doc">Contact Us</h1>
-
-				<!-- {{ contactUsData }} -->
+				
+				<!-- :icon="{ url: 'http://inter-service.info/assets/templates/dist/images/icons/marker.svg' }" -->
+				
 				<div class="info-area">
 						<figure>
-								<div class="map-holder" data-lat="19.4326077" data-lng="-99.13320799999997"
-											data-image="dist/images/marker.png">
-										<div id="map"></div>
+								<div class="map-holder">										
+										<gmap-map id="map" ref="map"
+										:center="{lat: 19.4326077, lng: -99.13320799999997}"
+										:zoom="12" :options="mapStyle"
+										>
+											<gmap-marker
+												:key="index"
+												v-for="(m, index) in markers"
+												:position="m.position"
+												:icon="{ url: '/marker.png' }"
+												:clickable="false"
+												:draggable="false"
+												@click="center=m.position"
+											></gmap-marker>
+										</gmap-map>
 								</div>
 						</figure>
 						<div class="description">
@@ -49,28 +62,228 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { mapGetters } from 'vuex'
+import * as VueGoogleMaps from '~/node_modules/vue2-google-maps/src/main'
+
+Vue.use(VueGoogleMaps, {
+	load: {
+		key: 'AIzaSyBL9AMx-tXllSKsq6mP7Hemvk7BCk5tLUI'
+	}
+})
+
 export default {
 	name: 'ContactUs',
+	data () {
+    return {
+			center: { lat: 19.4326077, lng: -99.13320799999997 },
+			markers: [{
+				position: {lat: 19.4326077, lng: -99.13320799999997}
+			}],
+			mapStyle: {
+				styles: [
+					{
+            "featureType": "administrative",
+            "elementType": "labels.text",
+            "stylers": [
+              {
+                "visibility": "on"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#444444"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.country",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "visibility": "on"
+              },
+              {
+                "hue": "#ebff00"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.country",
+            "elementType": "labels.text",
+            "stylers": [
+              {
+                "saturation": "-72"
+              },
+              {
+                "gamma": "0.00"
+              },
+              {
+                "lightness": "47"
+              },
+              {
+                "weight": "5.59"
+              },
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.country",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.country",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.country",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.province",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "saturation": "14"
+              },
+              {
+                "lightness": "11"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.province",
+            "elementType": "labels.text",
+            "stylers": [
+              {
+                "visibility": "off"
+              },
+              {
+                "hue": "#00ff00"
+              }
+            ]
+          },
+          {
+            "featureType": "landscape",
+            "elementType": "all",
+            "stylers": [
+              {
+                "color": "#f2f2f2"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "all",
+            "stylers": [
+              {
+                "saturation": -100
+              },
+              {
+                "lightness": 45
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "simplified"
+              }
+            ]
+          },
+          {
+            "featureType": "road.arterial",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "transit",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "all",
+            "stylers": [
+              {
+                "color": "#ffffff"
+              },
+              {
+                "visibility": "on"
+              }
+            ]
+          }
+				]
+			}
+    }
+  },
+  methods: {
+    ready () {
+      this.$refs.map.resize()
+    }
+  },
 	mounted() {
-		this.getData();
+		this.$store.dispatch("getDataForContactUs");
 		setTimeout(() => {
 			let test = this.$refs.contactsForm;
 			test.innerHTML = this.$store.getters.contactUsData;
 		}, 1000);
-
 		// console.log('DOC', document.getElementById('doc'));
 	},
 	computed: {
 		...mapGetters([
 			'contactUsData'
 		])
-	},
-	methods: {
-		getData() {
-			this.$store.dispatch("getDataForContactUs");			
-		}
 	}
 }
 </script>
 
+<style>
+	#map {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

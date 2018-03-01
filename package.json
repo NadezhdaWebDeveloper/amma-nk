@@ -23,6 +23,8 @@
     "eslint": "^4.18.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0"
+    "eslint-plugin-vue": "^4.0.0",
+    "nuxt-google-maps-module": "^1.5.1",
+    "vue2-google-maps": "^0.8.8"
   }
 }
