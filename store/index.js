@@ -10,13 +10,19 @@ export default () => {
       artworksHeaders: {},
       contactUsData: {}
     },
-    // getters:{
-    //   artworks: state => state.artworks,
-    //   artworksHeaders: state => state.artworksHeaders
-    // },
+    getters:{
+      // artworks: state => state.artworks,
+      // artworksHeaders: state => state.artworksHeaders
+      contactUsData: state => {        
+        if(state.contactUsData.acf !== undefined) {
+          return state.contactUsData.acf.contact_form_shortcode
+        }
+      }
+    },
     mutations: {
       setContactUsData: (state, data) => {
-        state.contactUsData = data;        
+        state.contactUsData = data;
+        console.log('DATA', state.contactUsData);
       },
       setArtworks: (state, {data, headers}) => {
         state.artworks = data;

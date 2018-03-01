@@ -1,7 +1,9 @@
 <template>
-	<div class="contact-us">
+<div class="contact-us">
 		<div class="container">
-				<h1>Contact Us</h1>
+				<h1 id="doc">Contact Us</h1>
+
+				<!-- {{ contactUsData }} -->
 				<div class="info-area">
 						<figure>
 								<div class="map-holder" data-lat="19.4326077" data-lng="-99.13320799999997"
@@ -36,41 +38,7 @@
 										</div>
 								</div>
 								<div class="lap-6">
-										<div class="contacts-form">
-												<form>
-														<div class="row">
-																<div class="desk-6">
-																		<div class="form-group">
-																				<input class="form-control" placeholder="Your Name *" type="text">
-																		</div>
-																</div>
-																<div class="desk-6">
-																		<div class="form-group">
-																				<input class="form-control" placeholder="Your Last Name *" type="text">
-																		</div>
-																</div>
-														</div>
-														<div class="row">
-																<div class="desk-6">
-																		<div class="form-group">
-																				<input class="form-control" placeholder="Email *" type="email">
-																		</div>
-																</div>
-																<div class="desk-6">
-																		<div class="form-group">
-																				<input class="form-control" placeholder="Phone" type="text">
-																		</div>
-																</div>
-														</div>
-														<div class="form-group textarea">
-																<textarea class="form-control" placeholder="Enter Message *"></textarea>
-														</div>
-														<div class="form-footer">
-																<span class="note">* Indicates required field.</span>
-																<button type="submit" class="btn">Send</button>
-														</div>
-												</form>
-										</div>
+										<div ref="contactsForm" class="contacts-form"></div>
 										<!--/contacts-form-->
 								</div>
 						</div>
@@ -81,21 +49,26 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
 	name: 'ContactUs',
-	created() {
-		this.$store.dispatch('getDataForContactUs');
-		this.insertWpForm(contactUsData.acf.contact_form_shortcode);
+	mounted() {
+		this.getData();
+		setTimeout(() => {
+			let test = this.$refs.contactsForm;
+			test.innerHTML = this.$store.getters.contactUsData;
+		}, 1000);
+
+		// console.log('DOC', document.getElementById('doc'));
 	},
 	computed: {
-		...mapState([
+		...mapGetters([
 			'contactUsData'
 		])
 	},
 	methods: {
-		insertWpForm(htmlStr) {
-			console.log('DATA', contactUsData.acf.contact_form_shortcode);
+		getData() {
+			this.$store.dispatch("getDataForContactUs");			
 		}
 	}
 }

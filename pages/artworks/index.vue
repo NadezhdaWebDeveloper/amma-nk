@@ -7,6 +7,12 @@
 				<!--/tabs-nav-->
 				<h2>Artworks</h2>
 
+				
+					
+						
+					
+			
+
 				<div class="search-filter">
 					<form>
 						<!-- <div class="search">
@@ -189,7 +195,7 @@ export default {
 		...mapState([
 			'artworks',
 			'artworksHeaders'
-		]),
+		])
 	},
 	methods: {
 		getArtworks() {
