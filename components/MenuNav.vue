@@ -39,11 +39,11 @@ export default {
 	},
 	beforeCreate() {
 		api.getMenu()
-      .then(res => {
+      .then(res => {				
 				this.createMenu(res.data.items);
       })
       .catch(error => {
-				console.log('ERROR');
+				console.log('ERROR Menu Nav');
 				throw new Error(error);
       });
 	}

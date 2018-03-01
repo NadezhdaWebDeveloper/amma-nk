@@ -84,7 +84,7 @@ export default {
 				this.artworksFilters = res.data;
       })
       .catch(error => {
-				console.log('ERROR');
+				console.log('ERROR A');
 				throw new Error(error);
       });
   },
