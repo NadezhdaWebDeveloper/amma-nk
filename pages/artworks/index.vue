@@ -202,7 +202,7 @@ export default {
 			} else {
 				route = this.$route.query;
 			}
-			this.$store.dispatch("getArtworks", this.$route.query);
+			this.$store.dispatch("getArtworks", route);
 		}
 	}
 };
