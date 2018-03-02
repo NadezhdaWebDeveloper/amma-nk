@@ -17,7 +17,7 @@
 				</div>
 			</slick>
 			<div class="more">
-				<a href="#" class="btn">Browse All</a>
+				<nuxt-link to="artworks" class="btn">Browse All</nuxt-link>
 			</div>
 		</div>
 	</section>

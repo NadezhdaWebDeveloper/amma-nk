@@ -21,8 +21,6 @@ export default () => {
         return state.homePageData.data
       },
       homeArtworksCollection: state => {
-        console.log('state.homePageData.data', state.homePageData.data);
-        
         if(state.homePageData.data !== undefined) {
           return state.homePageData.data.acf.home_collection_artworks        
         }
@@ -33,19 +31,17 @@ export default () => {
         }
       },
       homeExhibitions: state => {
-        if(state.homePageData.data !== undefined) {
+        if(state.homePageData.data !== undefined) {          
           return {
              data: state.homePageData.data.acf.home_exhibitions,
              title: state.homePageData.data.acf.home_exhibitions_title
           }      
         }
       },
-      homeArtists: state => {
+      homeArtists: state => {        
         if(state.homePageData.data !== undefined) {
-          return {
-             data: state.homePageData.data.acf.home_artists,
-             title: state.homePageData.data.acf.home_exhibitions_title
-          }      
+          console.log('state.homePageData', state.homePageData.data.acf.home_artists );
+          return state.homePageData.data.acf.home_artists['first-letters']
         }
       },
       homeInfoAboutDescription: state => {
