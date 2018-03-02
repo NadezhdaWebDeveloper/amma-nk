@@ -1,10 +1,7 @@
 <template>
 <div class="contact-us">
 		<div class="container">
-				<h1 id="doc">Contact Us</h1>
-				
-				<!-- :icon="{ url: 'http://inter-service.info/assets/templates/dist/images/icons/marker.svg' }" -->
-				
+				<h1>Contact Us</h1>
 				<div class="info-area">
 						<figure>
 								<div class="map-holder">										
@@ -268,7 +265,6 @@ export default {
 			let test = this.$refs.contactsForm;
 			test.innerHTML = this.$store.getters.contactUsData;
 		}, 1000);
-		// console.log('DOC', document.getElementById('doc'));
 	},
 	computed: {
 		...mapGetters([
