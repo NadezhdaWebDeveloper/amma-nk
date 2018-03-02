@@ -8,21 +8,58 @@ export default () => {
       artwork: {},
       artworks: {},
       artworksHeaders: {},
-      contactUsData: {}
+      contactUsData: {},
+      homePageData: {}
     },
-    getters:{
-      // artworks: state => state.artworks,
-      // artworksHeaders: state => state.artworksHeaders
+    getters: {
       contactUsData: state => {        
         if(state.contactUsData.acf !== undefined) {
           return state.contactUsData.acf.contact_form_shortcode
         }
+      },
+      homePageData: state => {
+        console.log('STATE!!!', state.homePageData.data);
+        
+        return state.homePageData.data
+      },
+      homeArtworksCollection: state => {
+        if(state.homePageData.data !== undefined) {
+          return state.homePageData.data.acf.home_collection_artworks        
+        }
+      },
+      homeArtworksSlider: state => {
+        if(state.homePageData.data !== undefined) {
+          return state.homePageData.data.acf.home_slider_artworks        
+        }
+      },
+      homeExhibitions: state => {
+        if(state.homePageData.data !== undefined) {
+          return {
+             data: state.homePageData.data.acf.home_exhibitions,
+             title: state.homePageData.data.acf.home_exhibitions_title
+          }      
+        }
+      },
+      homeArtists: state => {
+        if(state.homePageData.data !== undefined) {
+          return {
+             data: state.homePageData.data.acf.home_artists,
+             title: state.homePageData.data.acf.home_exhibitions_title
+          }      
+        }
+      },
+      homeInfoAboutDescription: state => {
+        if(state.homePageData.data !== undefined) {
+          return state.homePageData.data.acf.home_info_about_description    
+        }
       }
     },
     mutations: {
+      setDataForHomePage: (state, data) => {
+        state.homePageData = data;
+      },
       setContactUsData: (state, data) => {
         state.contactUsData = data;
-        console.log('DATA', state.contactUsData);
       },
       setArtworks: (state, {data, headers}) => {
         state.artworks = data;
@@ -36,6 +73,12 @@ export default () => {
       }
     },
     actions: {
+      async getDataForHomePage({ commit }) {
+        let data = await api.getDataForHomePage();
+        console.log('DATA', data);      
+        commit('setDataForHomePage', data)  
+      },
+
       async getDataForContactUs({ commit }) {
         let { data } = await api.getDataForContactUs();
         commit('setContactUsData', data);

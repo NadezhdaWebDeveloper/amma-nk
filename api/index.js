@@ -4,6 +4,9 @@ export default {
 	getMenu() {
 		return axios.get('http://amma-test.bigdropinc.net/wp-json/wp-api-menus/v2/menus/18')
 	},
+	getDataForHomePage() {
+		return axios.get('http://amma-test.bigdropinc.net/wp-json/wp/v2/pages/394')
+	},
 	getDataForContactUs() {
 		return axios.get('http://amma-test.bigdropinc.net/wp-json/wp/v2/pages/6')
 	},
