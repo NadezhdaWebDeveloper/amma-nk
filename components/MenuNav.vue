@@ -3,7 +3,7 @@
 		<router-link tag="li" :to="item.url" v-for="(item, idx) in menuItems" :key="idx" :class="[item.classes, {'menu-item-has-children': item.children}]" >
 			<a>{{ item.title }}</a>
 			<ul v-if="item.children">
-				<router-link tag="li" :to="subItem.url" v-for="(subItem, index) in item.children" :key="index" :class="[subItem.classes, {'menu-item-has-children': subItem.children}]" >
+				<router-link tag="li" :to="subItem.url" v-for="(subItem, index) in item.children" :key="index" >
 					<a>{{ subItem.title }}</a>
 				</router-link>
 			</ul>
