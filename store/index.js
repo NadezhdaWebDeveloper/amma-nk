@@ -17,12 +17,12 @@ export default () => {
           return state.contactUsData.acf.contact_form_shortcode
         }
       },
-      homePageData: state => {
-        console.log('STATE!!!', state.homePageData.data);
-        
+      homePageData: state => {        
         return state.homePageData.data
       },
       homeArtworksCollection: state => {
+        console.log('state.homePageData.data', state.homePageData.data);
+        
         if(state.homePageData.data !== undefined) {
           return state.homePageData.data.acf.home_collection_artworks        
         }
@@ -75,7 +75,6 @@ export default () => {
     actions: {
       async getDataForHomePage({ commit }) {
         let data = await api.getDataForHomePage();
-        console.log('DATA', data);      
         commit('setDataForHomePage', data)  
       },
 

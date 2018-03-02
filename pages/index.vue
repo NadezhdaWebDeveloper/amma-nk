@@ -1,43 +1,36 @@
 <template>
   <div>
-    <h1>Home</h1>
-    {{ homeArtworksSlider }}
-
-    <slick ref="slick">
-      <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-      <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-      <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-      <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-      <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-    </slick>
+    <MainGallery />    
+    <HomeCollection />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import Slick from 'vue-slick'
+import MainGallery from '@/components/MainGallery'
+import HomeCollection from '@/components/HomeCollection'
 
 export default {
   name: 'HomePage',
-  components: {
-    Slick
-  },
+
+
   mounted() {
-    this.$store.dispatch('getDataForHomePage');    
+    this.$store.dispatch('getDataForHomePage');
+
   },
-  computed: {
-    ...mapGetters([
-      'homePageData',
-      'homeArtworksCollection',
-      'homeArtworksSlider',
-      'homeExhibitions',
-      'homeArtists',
-      'homeInfoAboutDescription'
-    ])
-  }
+  components: {
+    MainGallery,
+    HomeCollection
+  },
+  // computed: {
+	// 	...mapGetters([
+	// 		'homePageData',
+	// 		'homeArtworksCollection',
+	// 		'homeArtworksSlider',
+	// 		'homeExhibitions',
+	// 		'homeArtists',
+	// 		'homeInfoAboutDescription'
+	// 	])
+	// },
 }
 </script>
-
-<style>
-@import 'slick-carousel/slick/slick.css';
-</style>
