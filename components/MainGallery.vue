@@ -1,6 +1,6 @@
 <template>
 	<section class="main-gallery-wrap">
-		<slick ref="slick" :options="slickOptions" class="big-slider">
+		<slick v-if="this.$store.state.sliderDataIsReady" ref="slick" :options="slickOptions" class="big-slider">
 			<div v-for="(slide, index) in homeArtworksSlider" :key="index" class="item">
 				<div class="holder">
 					<div class="info">
@@ -12,11 +12,10 @@
 			</div>
 		</slick>
 	</section>
-
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import Slick from 'vue-slick'
 export default {
 	name: 'MainGallery',

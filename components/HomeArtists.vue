@@ -20,7 +20,6 @@ import { mapGetters } from 'vuex'
 export default {
 	name: 'HomeArtists',
 	computed: {
-
 		...mapGetters([
 			'homeArtists'
 		])

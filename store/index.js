@@ -9,7 +9,10 @@ export default () => {
       artworks: {},
       artworksHeaders: {},
       contactUsData: {},
-      homePageData: {}
+      homePageData: {},
+      homeArtworksCollection: {},
+      homeArtworksSlider: {},
+      sliderDataIsReady: false
     },
     getters: {
       contactUsData: state => {        
@@ -53,6 +56,7 @@ export default () => {
     mutations: {
       setDataForHomePage: (state, data) => {
         state.homePageData = data;
+        state.sliderDataIsReady = true;
       },
       setContactUsData: (state, data) => {
         state.contactUsData = data;
@@ -71,7 +75,7 @@ export default () => {
     actions: {
       async getDataForHomePage({ commit }) {
         let data = await api.getDataForHomePage();
-        commit('setDataForHomePage', data)  
+        commit('setDataForHomePage', data)
       },
 
       async getDataForContactUs({ commit }) {

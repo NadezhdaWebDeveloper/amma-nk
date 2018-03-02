@@ -1,10 +1,8 @@
 <template>
 	<section class="collection-gallery-wrap">
 		<div class="container">
-			<!-- {{ homeArtworksCollection.title }} -->
 			<h2>The Collection</h2>
-			<slick :options="slickOptions" ref="slickCollection" class="collection-gallery">
-			<!-- <ul class="collection-gallery"> -->
+			<slick v-if="this.$store.state.sliderDataIsReady" :options="slickOptions" ref="slickCollection" class="collection-gallery">
 				<div v-for="(item, idx) in homeArtworksCollection" :key="idx">
 					<div class="item">
 						<figure>
@@ -34,7 +32,7 @@ export default {
 	data() {
 		return {
 			slickOptions: {
-					slidesToShow: 7,
+				slidesToShow: 7,
 			},
 		};
 	},
