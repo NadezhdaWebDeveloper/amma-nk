@@ -9,12 +9,12 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
-    // script: [
+    script: [
     //   { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js' },
     //   { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.js' },
     //   { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.select.js' },
     //   { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.checkbox.js' }
-    // ],
+    ],
     link: [
       /*{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }*/
       { rel: 'icon', type: 'image/png', href: '/favicon.png' }
@@ -31,7 +31,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
+    extend (config, { isDev, isClient, isServer }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -40,6 +40,15 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      // For Vue Slick
+      if (isServer) {
+        config.externals = [
+          require('webpack-node-externals')({
+            whitelist: [/^vue-slick/]
+          })
+        ]
+      }
+      // End For Vue Slick
     },
 
     /* babel: {
