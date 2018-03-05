@@ -3,6 +3,7 @@
     <MainGallery />    
     <HomeCollection />
     <HomeArtists />
+    <homeExhibitions />
   </div>
 </template>
 
@@ -11,6 +12,7 @@ import { mapGetters } from 'vuex'
 import MainGallery from '@/components/MainGallery'
 import HomeCollection from '@/components/HomeCollection'
 import HomeArtists from '@/components/HomeArtists'
+import homeExhibitions from '@/components/HomeExhibitions'
 
 export default {
   name: 'HomePage',
@@ -20,7 +22,8 @@ export default {
   components: {
     MainGallery,
     HomeCollection,
-    HomeArtists
+    HomeArtists,
+    homeExhibitions
   },
   // computed: {
 	// 	...mapGetters([
