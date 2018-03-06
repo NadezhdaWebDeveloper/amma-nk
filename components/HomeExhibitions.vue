@@ -1,44 +1,15 @@
 <template>
-	<section class="exhibitions">
-		<div class="container" v-if="this.$store.state.sliderDataIsReady">
+	<section class="exhibitions" v-if="this.$store.state.homeDataIsReady">
+		<div class="container">
 			<h2>{{ homeExhibitions.title }}</h2>
-			{{homeExhibitions.data}}
 			<div class="posts">
-				<div class="main-post">					
-					<div class="post">
-						<figure>
-							<a href="#" style="background-image: url(dist/images/exhibition-01.jpg);"></a>
-						</figure>
-						<div class="info">
-							<div class="date">Nov. 18, 2016 – Feb. 5, 2017</div>
-							<h3><a href="#">From the Collection: 1960–1969</a></h3>
-							<h4>University Teaching Gallery, Harvard Art Museums</h4>
-						</div>
-					</div>
+				<div class="main-post">
+					<PostPreview :postData="homeExhibitions.data['0']" />
 				</div>
 				<div class="other-posts">
-					<div class="post">
-						<figure>
-							<a href="#" style="background-image: url(dist/images/exhibition-02.jpg);"></a>
-						</figure>
-						<div class="info">
-							<div class="date">Aug. 27, 2016 – Jan. 8, 2017</div>
-							<h3><a href="#">Vision and Justice: The Art of Citizenship</a></h3>
-							<h4>Harvard Art Museums</h4>
-						</div>
-					</div>
-					<div class="post">
-						<figure>
-							<a href="#" style="background-image: url(dist/images/exhibition-03.jpg);"></a>
-						</figure>
-						<div class="info">
-							<div class="date">Aug. 27, 2016 – Jan. 8, 2017</div>
-							<h3><a href="#">From the Collection: 1960–1969</a></h3>
-							<h4>University Teaching Gallery</h4>
-						</div>
-					</div>
+					<PostPreview v-show="index > 0" :postData="post" v-for="(post, index) in homeExhibitions.data" :key="index" />					
 					<div class="more">
-						<a href="#" class="btn">more Exhibitions</a>
+						<nuxt-link to="about-us" class="btn">more Exhibitions</nuxt-link>
 					</div>
 				</div>
 			</div>
@@ -48,9 +19,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import PostPreview from '@/components/PostPreview'
+import PostPreview from './PostPreview'
 export default {
 	name: 'HomeExhibitions',
+	components: {
+		PostPreview
+	},
 	computed: {
 		...mapGetters([
 			'homeExhibitions'

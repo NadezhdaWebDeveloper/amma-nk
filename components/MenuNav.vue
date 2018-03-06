@@ -1,10 +1,10 @@
 <template>
 	<ul class="main-nav">
 		<router-link tag="li" :to="item.url" v-for="(item, idx) in menuItems" :key="idx" :class="[item.classes, {'menu-item-has-children': item.children}]" >
-			<a>{{ item.title }}</a>
+			<a v-html="item.title"></a>
 			<ul v-if="item.children">
 				<router-link tag="li" :to="subItem.url" v-for="(subItem, index) in item.children" :key="index" >
-					<a>{{ subItem.title }}</a>
+					<a v-html="subItem.title"></a>
 				</router-link>
 			</ul>
 		</router-link>

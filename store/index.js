@@ -9,57 +9,67 @@ export default () => {
       artworks: {},
       artworksHeaders: {},
       contactUsData: {},
-      homePageData: {},
-      homeArtworksCollection: {},
-      homeArtworksSlider: {},
-      sliderDataIsReady: false
+      homeDataIsReady: false,
+      homePageData: {}
     },
     getters: {
-      contactUsData: state => {        
-        if(state.contactUsData.acf !== undefined) {
-          return state.contactUsData.acf.contact_form_shortcode
+      contactUsData: state => {
+        return {
+          mapDescr: state.contactUsData.contact_description_before_address,
+          formDescr: state.contactUsData.contact_description_before_form,
+          formPostEndpoint: state.contactUsData.contact_form_post_endpoint,
+          form: state.contactUsData.contact_form_shortcode,
+          email: state.contactUsData.contact_email,
+          fax: state.contactUsData.contact_fax,
+          phone: state.contactUsData.contact_fax,
+          address: state.contactUsData.contact_office_address,
+          location: state.contactUsData.contact_office_location
         }
       },
-      homePageData: state => {        
-        return state.homePageData.data
-      },
       homeArtworksCollection: state => {
-        if(state.homePageData.data !== undefined) {
-          return state.homePageData.data.acf.home_collection_artworks        
+        return {
+          data: state.homePageData.home_collection_artworks,
+          title: state.homePageData.home_collection_title
         }
       },
       homeArtworksSlider: state => {
-        if(state.homePageData.data !== undefined) {
-          return state.homePageData.data.acf.home_slider_artworks        
+        return state.homePageData.home_slider_artworks
+      },
+      homeExhibitions: state => {   
+        return {
+          data: state.homePageData.home_exhibitions,
+          title: state.homePageData.home_exhibitions_title
         }
       },
-      homeExhibitions: state => {
-        if(state.homePageData.data !== undefined) {          
-          return {
-             data: state.homePageData.data.acf.home_exhibitions,
-             title: state.homePageData.data.acf.home_exhibitions_title
-          }      
+      homeArtists: state => {
+        return {
+          data: state.homePageData.home_artists['first-letters'],
+          title: state.homePageData.home_artists_title,
         }
       },
-      homeArtists: state => {        
-        if(state.homePageData.data !== undefined) {
-          console.log('state.homePageData', state.homePageData.data.acf.home_artists );
-          return state.homePageData.data.acf.home_artists['first-letters']
+      homeAbout: state => {
+        return state.homePageData.home_info_about_description
+      },
+      homeRss: state => {
+        return {
+          title: state.homePageData.home_rss_news_title
         }
       },
-      homeInfoAboutDescription: state => {
-        if(state.homePageData.data !== undefined) {
-          return state.homePageData.data.acf.home_info_about_description    
+      homeSisterAssociations: state => {
+        return {
+          title: state.homePageData.home_info_sister_title
         }
       }
     },
     mutations: {
-      setDataForHomePage: (state, data) => {
-        state.homePageData = data;
-        state.sliderDataIsReady = true;
+      setDataForHomePage: (state, data) => {        
+        state.homePageData = data.acf;
+        state.homeDataIsReady = true;
       },
       setContactUsData: (state, data) => {
-        state.contactUsData = data;
+        console.log('DATA', data.acf);
+        
+        state.contactUsData = data.acf;
       },
       setArtworks: (state, {data, headers}) => {
         state.artworks = data;
@@ -74,7 +84,7 @@ export default () => {
     },
     actions: {
       async getDataForHomePage({ commit }) {
-        let data = await api.getDataForHomePage();
+        let { data } = await api.getDataForHomePage();
         commit('setDataForHomePage', data)
       },
 
@@ -130,6 +140,7 @@ export default () => {
         });
       },
 
+      // Helper Function
       artworkInit(context, item) {
         let artwork = {
           id: item.id !== undefined ? item.id : '',

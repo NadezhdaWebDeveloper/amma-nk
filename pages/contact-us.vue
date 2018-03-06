@@ -1,60 +1,56 @@
 <template>
 <div class="contact-us">
-		<div class="container">
-				<h1>Contact Us</h1>
-				<div class="info-area">
-						<figure>
-								<div class="map-holder">										
-										<gmap-map id="map" ref="map"
-										:center="{lat: 19.4326077, lng: -99.13320799999997}"
-										:zoom="12" :options="mapStyle"
-										>
-											<gmap-marker
-												:key="index"
-												v-for="(m, index) in markers"
-												:position="m.position"
-												:icon="{ url: '/marker.png' }"
-												:clickable="false"
-												:draggable="false"
-												@click="center=m.position"
-											></gmap-marker>
-										</gmap-map>
-								</div>
-						</figure>
-						<div class="description">
-								<p>If in Mexico City, we would love to see you in person. Stop by to meet us at:</p>
-								<address>
-										<span>Las Flores #50.</span>
-										<span>Colonia Tlacopac, San Ángel.</span>
-										<span>Mexico City, Mexico.</span>
-								</address>
-								<dl class="contacts-list">
-										<dt>Call:</dt>
-										<dd><a href="tel:55935197">55 93 51 97</a></dd>
-										<dt>Fax:</dt>
-										<dd><a href="tel:55935190">55 93 51 90</a></dd>
-								</dl>
-						</div>
-				</div>
-				<!--/info-area-->
-				<div class="contacts-area">
-						<div class="row">
-								<div class="lap-6">
-										<div class="info">
-												<p>Submit the form and we will get back to you as soon as possible. You can also always
-														send us
-														an email at`</p>
-												<a href="mailto:hello@fundacionamma.org" class="link">hello@fundacionamma.org</a>
-										</div>
-								</div>
-								<div class="lap-6">
-										<div ref="contactsForm" class="contacts-form"></div>
-										<!--/contacts-form-->
-								</div>
-						</div>
-				</div>
-				<!--/contacts-area-->
-		</div>
+  <div class="container">
+    <h1>Contact Us</h1>
+    {{officeLocation}}
+    <div class="info-area">
+      <figure>
+        <div class="map-holder">
+          <gmap-map id="map" ref="map"
+          :center="{lat: 19.4326077, lng: -99.13320799999997}"
+          :zoom="12" :options="mapStyle"
+          >
+            <gmap-marker
+              :key="index"
+              v-for="(m, index) in markers"
+              :position="m.position"
+              :icon="{ url: '/marker.png' }"
+              :clickable="false"
+              :draggable="false"
+              @click="center=m.position"
+            ></gmap-marker>
+          </gmap-map>
+        </div>
+      </figure>
+      <div class="description">
+        <p v-html="contactUsData.mapDescr"></p>
+        <address>
+          <span v-for="(address, key) in contactUsData.address" :key="key" v-html="address.contact_office_address_p"></span>
+        </address>
+        <dl class="contacts-list">
+          <dt>Call:</dt>
+          <dd><a href="tel:55935197" v-html="contactUsData.phone"></a></dd>
+          <dt>Fax:</dt>
+          <dd><a :href="`tel:${contactUsData.fax}`" v-html="contactUsData.fax"></a></dd>
+        </dl>
+      </div>
+    </div>
+    <!--/info-area-->
+    <div class="contacts-area">
+      <div class="row">
+        <div class="lap-6">
+          <div class="info">
+            <p v-html="contactUsData.formDescr"></p>
+            <a :href="`mailto:${contactUsData.email}`" class="link" v-html="contactUsData.email"></a>
+          </div>
+        </div>
+        <div class="lap-6">
+          <div class="contacts-form" v-html="contactUsData.form"></div>
+        </div>
+      </div>
+    </div>
+    <!--/contacts-area-->
+  </div>
 </div>
 </template>
 
@@ -261,15 +257,17 @@ export default {
   },
 	mounted() {
 		this.$store.dispatch("getDataForContactUs");
-		setTimeout(() => {
-			let test = this.$refs.contactsForm;
-			test.innerHTML = this.$store.getters.contactUsData;
-		}, 1000);
 	},
 	computed: {
 		...mapGetters([
 			'contactUsData'
-		])
+    ]),
+    officeLocation() {
+      return {
+        lat: this.$store.getters.contactUsData.location,
+        lng: this.$store.getters.contactUsData.location
+      }
+    }
 	}
 }
 </script>

@@ -1,11 +1,11 @@
 <template>
-	<section class="main-gallery-wrap">
-		<slick v-if="this.$store.state.sliderDataIsReady" ref="slick" :options="slickOptions" class="big-slider">
+	<section class="main-gallery-wrap" v-if="this.$store.state.homeDataIsReady">
+		<slick ref="slick" :options="slickOptions" class="big-slider">
 			<div v-for="(slide, index) in homeArtworksSlider" :key="index" class="item">
 				<div class="holder">
 					<div class="info">
 						<div class="date">{{ slide.date }}</div>
-						<div class="author">by {{slide.full_name}}. {{ slide.title }}</div>
+						<div class="author">by <span v-html="slide.full_name"></span>. {{ slide.title }}</div>
 					</div>
 					<div class="page-bg" :style="`backgroundImage: url('${slide.img}')`"></div>
 				</div>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import Slick from 'vue-slick'
 export default {
 	name: 'MainGallery',
@@ -71,5 +71,4 @@ export default {
 .big-slider a:hover:after {
 	background: #ff3a1a;
 }
-
 </style>

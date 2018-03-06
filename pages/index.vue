@@ -1,19 +1,19 @@
 <template>
-  <div>
+  <div v-if="this.$store.state.homeDataIsReady">
     <MainGallery />    
     <HomeCollection />
     <HomeArtists />
-    <homeExhibitions />
+    <HomeExhibitions />
+    <HomeColumnView />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import MainGallery from '@/components/MainGallery'
 import HomeCollection from '@/components/HomeCollection'
 import HomeArtists from '@/components/HomeArtists'
-import homeExhibitions from '@/components/HomeExhibitions'
-
+import HomeExhibitions from '@/components/HomeExhibitions'
+import HomeColumnView from '@/components/HomeColumnView'
 export default {
   name: 'HomePage',
   mounted() {
@@ -23,18 +23,9 @@ export default {
     MainGallery,
     HomeCollection,
     HomeArtists,
-    homeExhibitions
-  },
-  // computed: {
-	// 	...mapGetters([
-	// 		'homePageData',
-	// 		'homeArtworksCollection',
-	// 		'homeArtworksSlider',
-	// 		'homeExhibitions',
-	// 		'homeArtists',
-	// 		'homeInfoAboutDescription'
-	// 	])
-	// },
+    HomeExhibitions,
+    HomeColumnView
+  }
 }
 </script>
 

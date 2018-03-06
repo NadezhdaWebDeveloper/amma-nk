@@ -1,15 +1,15 @@
 <template>
-	<section class="collection-gallery-wrap">
+	<section class="collection-gallery-wrap" v-if="this.$store.state.homeDataIsReady">
 		<div class="container">
-			<h2>The Collection</h2>
-			<slick v-if="this.$store.state.sliderDataIsReady" :options="slickOptions" ref="slickCollection" class="collection-gallery">
-				<div v-for="(item, idx) in homeArtworksCollection" :key="idx">
+			<h2>{{ homeArtworksCollection.title }}</h2>
+			<slick :options="slickOptions" ref="slickCollection" class="collection-gallery">
+				<div v-for="(item, idx) in homeArtworksCollection.data" :key="idx">
 					<div class="item">
 						<figure>
 							<a :href="item.link" :style="`backgroundImage: url('${item.img}');`"></a>
 						</figure>
-						<h4><a href="#"><span>Henry</span>, Sean</a></h4> <!-- {{ item.full_name }} -->
-						<p>{{ item.title }}</p>
+						<h4><a href="#" v-html="item.full_name"></a></h4>
+						<p v-html="item.title"></p>
 						<span class="date">Date: {{ item.date }}</span>
 					</div>
 				</div>
@@ -50,7 +50,6 @@ export default {
 		},
 		reInit() {
 			this.$nextTick(() => {
-
 				this.$refs.slick.reSlick();
 			});
 		},

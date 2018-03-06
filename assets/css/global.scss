@@ -32,9 +32,11 @@ body {
   }
 }
 
+.cpnt-enter-active, .cpnt-leave-active,
 .page-enter-active, .page-leave-active {
   transition: opacity 0.5s;
 }
+.cpnt-enter, .cpnt-leave-active,
 .page-enter, .page-leave-active {
   opacity: 0;
 }
