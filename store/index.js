@@ -67,8 +67,7 @@ export default () => {
         state.homeDataIsReady = true;
       },
       setContactUsData: (state, data) => {
-        console.log('DATA', data.acf);
-        
+        // console.log('DATA', data.acf);
         state.contactUsData = data.acf;
       },
       setArtworks: (state, {data, headers}) => {

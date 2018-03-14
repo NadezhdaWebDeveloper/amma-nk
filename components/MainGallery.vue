@@ -5,7 +5,7 @@
 				<div class="holder">
 					<div class="info">
 						<div class="date">{{ slide.date }}</div>
-						<div class="author">by <span v-html="slide.full_name"></span>. {{ slide.title }}</div>
+						<div class="author">by <span v-html="slide.full_name"></span>. <cite v-html="slide.title"></cite></div>
 					</div>
 					<div class="page-bg" :style="`backgroundImage: url('${slide.img}')`"></div>
 				</div>

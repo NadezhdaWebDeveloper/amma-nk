@@ -1,3 +1,5 @@
+const webpack = require('webpack')
+
 module.exports = {
   /*
   ** Headers of the page
@@ -10,7 +12,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     script: [
-    //   { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js' },
+      // { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js' },
     //   { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.js' },
     //   { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.select.js' },
     //   { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.checkbox.js' }
@@ -51,11 +53,24 @@ module.exports = {
       // End For Vue Slick
     },
 
-    /* babel: {
-      presets: ['vue-app'] // by default
-      presets: ['es2015', 'stage-0']
-    } */
+    vendor: [
+      'axios',
+      '~/plugins/form-processing.js'
+    ],
+
+    plugins: [
+      new webpack.ProvidePlugin({
+        '$': 'jquery'
+      })
+    ],
+
+    babel: {
+      presets: ['vue-app']
+      // presets: ['es2015', 'stage-0']
+    }
   },
+
+  // mode: 'spa',
 
   css: [
     '@/assets/css/global.scss'
@@ -72,7 +87,8 @@ module.exports = {
   // },
 
   plugins: [
-    {src: '~/plugins/check-mobile.js', ssr: false}
+    {src: '~/plugins/check-mobile.js', ssr: false},
+    // {src: '~/plugins/form-processing', ssr: false}
   ],
 
   router: {
