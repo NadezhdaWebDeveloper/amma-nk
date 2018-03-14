@@ -5,6 +5,7 @@ import getUrl from "@/helpers/getUrl"
 export default () => { 
   return new Vuex.Store({
     state: {
+      artists: {},
       artwork: {},
       artworks: {},
       artworksHeaders: {},
@@ -58,6 +59,9 @@ export default () => {
         return {
           title: state.homePageData.home_info_sister_title
         }
+      },
+      artists: state => {
+        return state.artists
       }
     },
     mutations: {
@@ -66,6 +70,9 @@ export default () => {
       },
       setContactUsData: (state, data) => {
         state.contactUsData = data.acf;
+      },
+      setArtists: (state, data) => {
+        state.artists = data;
       },
       setArtworks: (state, {data, headers}) => {
         state.artworks = data;
@@ -89,7 +96,13 @@ export default () => {
         commit('setContactUsData', data);
       },
 
-      async getArtworks({ commit }, route) {        
+      async getArtists({ commit }, route) {
+        let queryString = '';
+        let { data } = await api.getArtists(queryString);
+        commit('setArtists', data)
+      },
+
+      async getArtworks({ commit }, route) {
         let queryString = ``;
         for (const key in route) {
           if (route.hasOwnProperty(key)) {

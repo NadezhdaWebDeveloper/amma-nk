@@ -10,6 +10,9 @@ export default {
 	getDataForContactUs() {
 		return axios.get('http://amma-test.bigdropinc.net/wp-json/wp/v2/pages/6')
 	},
+	getArtists(query) {
+		return axios.get(`http://amma-test.bigdropinc.net/wp-json/wp/v2/artists${query}`);
+	},
 	getArtworks(query) {
 		return axios.get(`http://amma-test.bigdropinc.net/wp-json/wp/v2/artworks?_embed${query}`);
 	},
