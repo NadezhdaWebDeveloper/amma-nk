@@ -16,11 +16,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Slick from 'vue-slick'
+import slick from 'vue-slick'
 export default {
 	name: 'MainGallery',
 	components: {
-    Slick
+    slick
 	},
 	data() {
 		return {

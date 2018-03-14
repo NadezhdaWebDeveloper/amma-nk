@@ -2,6 +2,9 @@
 	<div>
 		<div class="news">
 			<h3>{{ homeRss.title }}</h3>
+
+			<div v-html="rssData"></div>
+			<!-- {{rssData}} -->
 			<ul class="info-list">
 				<li>
 					<div class="date">
@@ -58,13 +61,32 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapGetters } from 'vuex'
 export default {
 	name: 'HomeNews',
+	data() {
+		return {
+			rssData: {}
+		}
+	},
 	computed: {
 		...mapGetters([
 			'homeRss'
 		])
 	},
+	mounted() {
+		console.log('homeRss', this.homeRss.rssLink);
+		
+		axios.get(this.homeRss.rssLink)
+		.then(res => {
+			console.log('Response', res);
+			
+			this.rssData = res.data
+		})
+		.catch(err => {
+			throw new Error(err)
+		})
+	}
 }
 </script>

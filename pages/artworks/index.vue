@@ -8,10 +8,11 @@
 				<h2>Artworks</h2>
 				<div class="search-filter">
 					<form>
-						<!-- <div class="search">
+						
+						<div class="search">
 							<div class="inner">
 								<button type="submit" class="btn-submit">
-										<svg version="1.1" id="Layer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 21 16" style="enable-background:new 0 0 21 16;" xml:space="preserve">
+										<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 21 16" style="enable-background:new 0 0 21 16;" xml:space="preserve">
 											<path fill="#434A54" d="M9.3,0.8C6.3-0.9,2.5,0.1,0.8,3.1S0.1,10,3.1,11.7c2.6,1.5,5.9,0.9,7.8-1.4l1.5,0.9c-0.2,0.5-0.1,1,0.4,1.3
 											l5.7,3.3c0.5,0.3,1.1,0.1,1.4-0.4l1.1-1.8c0.3-0.5,0.1-1.1-0.4-1.4l-5.7-3.3c-0.5-0.3-1-0.1-1.3,0.3L12,8.3C13,5.6,11.9,2.4,9.3,0.8
 											z M3.4,11.1c-2.6-1.5-3.5-5-2-7.6s4.9-3.6,7.5-2s3.5,5,2,7.6S6,12.6,3.4,11.1z M14.5,9.5l5.7,3.3c0.2,0.1,0.2,0.3,0.1,0.5l-1.1,1.8
@@ -23,8 +24,11 @@
 										<input type="text" class="form-control" placeholder="Search by keyword, title, artist, or object number">
 								</div>
 							</div>
-						</div> -->
+						</div>
 						<!--/search-->
+
+
+						
 						<div class="filter-checkboxes">
 							<label>Filter By Type</label>
 							<ul>

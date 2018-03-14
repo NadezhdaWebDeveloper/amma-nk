@@ -52,7 +52,8 @@ export default () => {
       },
       homeRss: state => {
         return {
-          title: state.homePageData.home_rss_news_title
+          title: state.homePageData.home_rss_news_title,
+          rssLink: state.homePageData.home_rss_feeds
         }
       },
       homeSisterAssociations: state => {
@@ -65,7 +66,7 @@ export default () => {
       }
     },
     mutations: {
-      setDataForHomePage: (state, data) => {        
+      setDataForHomePage: (state, data) => {       
         state.homePageData = data.acf;
       },
       setContactUsData: (state, data) => {
