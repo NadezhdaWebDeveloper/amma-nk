@@ -1,10 +1,10 @@
 <template>
-  <div v-if="this.$store.state.homeDataIsReady">
-    <MainGallery />    
-    <HomeCollection />
-    <HomeArtists />
-    <HomeExhibitions />
-    <HomeColumnView />
+  <div>
+    <main-gallary />    
+    <collection />
+    <artists />
+    <exhibitions />
+    <last-updates />
   </div>
 </template>
 
@@ -16,15 +16,15 @@ import HomeExhibitions from '@/components/HomeExhibitions'
 import HomeColumnView from '@/components/HomeColumnView'
 export default {
   name: 'HomePage',
-  mounted() {
-    this.$store.dispatch('getDataForHomePage');
+  async asyncData({ app, error }) {
+    await app.store.dispatch("getDataForHomePage");
   },
   components: {
-    MainGallery,
-    HomeCollection,
-    HomeArtists,
-    HomeExhibitions,
-    HomeColumnView
+    'main-gallary': MainGallery,
+    'collection': HomeCollection,
+    'artists': HomeArtists,
+    'exhibitions': HomeExhibitions,
+    'last-updates': HomeColumnView
   }
 }
 </script>

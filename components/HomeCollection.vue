@@ -1,5 +1,5 @@
 <template>
-	<section class="collection-gallery-wrap" v-if="this.$store.state.homeDataIsReady">
+	<section class="collection-gallery-wrap">
 		<div class="container">
 			<h2>{{ homeArtworksCollection.title }}</h2>
 			<slick :options="slickOptions" ref="slickCollection" class="collection-gallery">

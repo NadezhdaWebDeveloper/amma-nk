@@ -1,5 +1,5 @@
 <template>
-	<section class="exhibitions" v-if="this.$store.state.homeDataIsReady">
+	<section class="exhibitions">
 		<div class="container">
 			<h2>{{ homeExhibitions.title }}</h2>
 			<div class="posts">

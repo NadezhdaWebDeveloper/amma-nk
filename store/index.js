@@ -9,7 +9,6 @@ export default () => {
       artworks: {},
       artworksHeaders: {},
       contactUsData: {},
-      homeDataIsReady: false,
       homePageData: {}
     },
     getters: {
@@ -43,7 +42,7 @@ export default () => {
       },
       homeArtists: state => {
         return {
-          data: state.homePageData.home_artists['first-letters'],
+          data: state.homePageData.home_artists.first_letters,
           title: state.homePageData.home_artists_title,
         }
       },
@@ -64,10 +63,8 @@ export default () => {
     mutations: {
       setDataForHomePage: (state, data) => {        
         state.homePageData = data.acf;
-        state.homeDataIsReady = true;
       },
       setContactUsData: (state, data) => {
-        // console.log('DATA', data.acf);
         state.contactUsData = data.acf;
       },
       setArtworks: (state, {data, headers}) => {

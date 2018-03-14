@@ -1,5 +1,5 @@
 <template>
-	<section class="main-gallery-wrap" v-if="this.$store.state.homeDataIsReady">
+	<section class="main-gallery-wrap">
 		<slick ref="slick" :options="slickOptions" class="big-slider">
 			<div v-for="(slide, index) in homeArtworksSlider" :key="index" class="item">
 				<div class="holder">

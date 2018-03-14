@@ -1,5 +1,6 @@
 <template>
-<section class="artists-index" v-if="this.$store.state.homeDataIsReady">
+<section class="artists-index">
+	<!-- {{ homeArtists }} -->
 	<div class="container">
 		<h2>{{ homeArtists.title }}</h2>
 		<div class="holder">
