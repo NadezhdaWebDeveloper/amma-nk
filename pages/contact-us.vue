@@ -2,27 +2,22 @@
 <div class="contact-us">
   <div class="container">
     <h1>Contact Us</h1>
-
-    <!-- {{officeLocation}} -->
-
     <div class="info-area">
-      <figure>
-        <div class="map-holder">
-          <gmap-map id="map" ref="map"
-          :center="{lat: 19.4326077, lng: -99.13320799999997}"
-          :zoom="12" :options="mapStyle"
-          >
-            <gmap-marker
-              :key="index"
-              v-for="(m, index) in markers"
-              :position="m.position"
-              :icon="{ url: '/marker.png' }"
-              :clickable="false"
-              :draggable="false"
-              @click="center=m.position"
-            ></gmap-marker>
-          </gmap-map>
-        </div>
+      <figure class="map-holder">
+        <gmap-map id="map" ref="map"
+        :center="{lat: 19.4326077, lng: -99.13320799999997}"
+        :zoom="12" :options="mapStyle"
+        >
+          <gmap-marker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="m.position"
+            :icon="{ url: '/marker.png' }"
+            :clickable="false"
+            :draggable="false"
+            @click="center=m.position"
+          ></gmap-marker>
+        </gmap-map>
       </figure>
       <div class="description">
         <p v-html="contactUsData.mapDescr"></p>
@@ -71,7 +66,10 @@ Vue.use(VueGoogleMaps, {
 // Vue.use(formProcessing);
 
 export default {
-	name: 'ContactUs',
+  name: 'ContactUs',  
+  async asyncData({ app, error }) {
+    await app.store.dispatch("getDataForContactUs");
+  },
 	data () {
     return {
 			center: { lat: 19.4326077, lng: -99.13320799999997 },
@@ -260,17 +258,14 @@ export default {
       this.$refs.map.resize()
     }
   },
-	mounted() {
-		this.$store.dispatch("getDataForContactUs");
-	},
 	computed: {
 		...mapGetters([
 			'contactUsData'
     ]),
     officeLocation() {
       return {
-        lat: this.$store.getters.contactUsData.location,
-        lng: this.$store.getters.contactUsData.location
+        lat: +this.$store.getters.contactUsData.location.lat,
+        lng: +this.$store.getters.contactUsData.location.lng
       }
     }
 	}
