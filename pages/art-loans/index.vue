@@ -5,7 +5,7 @@
 			<div class="tabs-wrap">
 				<PageTabsNav/>
 				<div class="info-area">
-						<figure style="background-image: url(http://amma-test.bigdropinc.net/wp-content/uploads/2017/07/collection-01.jpg);"></figure>
+						<figure :style="`backgroundImage: url('${artLoansPageData.media.src}');`"></figure>
 						<div class="description">
 								<h2 v-html="artLoansPageData.title"></h2>
 								<div class="text-content short full">

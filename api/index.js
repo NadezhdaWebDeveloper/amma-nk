@@ -26,6 +26,6 @@ export default {
 		return axios.get(`http://amma-test.bigdropinc.net/wp-json/wp/v2/artworks?_embed${slug}`);
 	},
 	getArtLoansData() {
-		return axios.get('http://amma-test.bigdropinc.net/wp-json/wp/v2/pages/380');
+		return axios.get('http://amma-test.bigdropinc.net/wp-json/wp/v2/pages/380?_embed');
 	}
 }

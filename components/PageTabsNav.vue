@@ -34,9 +34,7 @@ export default {
 	},
 	mounted() {
 		api.getCollectionMenu()
-      .then(res => {
-				console.log('res', res);
-				
+      .then(res => {				
 				this.createMenu(res.data.items);
       })
       .catch(error => {

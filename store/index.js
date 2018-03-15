@@ -66,13 +66,19 @@ export default () => {
         }
       },
       artLoansPageData: state => {
+        console.log(state.artLoansPageData._embedded['wp:featuredmedia'][0]);
+        
         return {
           title: state.artLoansPageData.title.rendered,
           content: state.artLoansPageData.content.rendered,
           excerpt: state.artLoansPageData.excerpt.rendered,
           pdfLink: state.artLoansPageData.acf.pdf_source,
           reqBtnLabel: state.artLoansPageData.acf.request_button_label,
-          reqForm: state.artLoansPageData.acf.request_form
+          reqForm: state.artLoansPageData.acf.request_form,
+          media: {
+            target: state.artLoansPageData._embedded['wp:featuredmedia'][0].link,
+            src: state.artLoansPageData._embedded['wp:featuredmedia'][0].source_url
+          }
         }
       }
     },
@@ -96,7 +102,7 @@ export default () => {
       setDataForHomePage: (state, data) => {
         state.homePageData = data.acf;
       },
-      setDataForArtLoansPage: (state, data) => {        
+      setDataForArtLoansPage: (state, data) => {
         state.artLoansPageData = data;
       }
     },
@@ -160,7 +166,7 @@ export default () => {
         commit('setDataForHomePage', data)
       },
       async getArtLoansData({ commit }) {
-        let { data } = await api.getArtLoansData();        
+        let { data } = await api.getArtLoansData();
         commit('setDataForArtLoansPage', data);
       },
 
