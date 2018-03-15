@@ -10,9 +10,13 @@ export default () => {
       artworks: {},
       artworksHeaders: {},
       contactUsData: {},
-      homePageData: {}
+      homePageData: {},
+      artLoansPageData: {}
     },
     getters: {
+      artists: state => {
+        return state.artists
+      },
       contactUsData: state => {
         return {
           mapDescr: state.contactUsData.contact_description_before_address,
@@ -61,19 +65,23 @@ export default () => {
           title: state.homePageData.home_info_sister_title
         }
       },
-      artists: state => {
-        return state.artists
+      artLoansPageData: state => {
+        return {
+          title: state.artLoansPageData.title.rendered,
+          content: state.artLoansPageData.content.rendered,
+          excerpt: state.artLoansPageData.excerpt.rendered,
+          pdfLink: state.artLoansPageData.acf.pdf_source,
+          reqBtnLabel: state.artLoansPageData.acf.request_button_label,
+          reqForm: state.artLoansPageData.acf.request_form
+        }
       }
     },
     mutations: {
-      setDataForHomePage: (state, data) => {       
-        state.homePageData = data.acf;
-      },
-      setContactUsData: (state, data) => {
-        state.contactUsData = data.acf;
-      },
       setArtists: (state, data) => {
         state.artists = data;
+      },
+      setArtwork: (state, data) => {
+        state.artwork = data;
       },
       setArtworks: (state, {data, headers}) => {
         state.artworks = data;
@@ -82,23 +90,34 @@ export default () => {
           totalPages: +headers['x-wp-totalpages']
         };
       },
-      setArtwork: (state, data) => {
-        state.artwork = data;
+      setContactUsData: (state, data) => {
+        state.contactUsData = data.acf;
+      },
+      setDataForHomePage: (state, data) => {
+        state.homePageData = data.acf;
+      },
+      setDataForArtLoansPage: (state, data) => {        
+        state.artLoansPageData = data;
       }
     },
     actions: {
-      async getDataForHomePage({ commit }) {
-        let { data } = await api.getDataForHomePage();
-        commit('setDataForHomePage', data)
-      },
-      async getDataForContactUs({ commit }) {
-        let { data } = await api.getDataForContactUs();
-        commit('setContactUsData', data);
-      },
       async getArtists({ commit }, route) {
         let queryString = '';
         let { data } = await api.getArtists(queryString);
         commit('setArtists', data)
+      },
+      async getArtwork({ commit }, route) {
+        let query = route.params.id != undefined ? `&filter[name]=${route.params.id}` : '';
+        const { data } = await api.getArtwork(query);
+        data.map(item => {
+          this.dispatch('artworkInit', item)
+            .then(res => {
+              commit('setArtwork', res);
+            })
+            .catch(err => {
+              throw new Error(err);
+            });
+        });
       },
       async getArtworks({ commit }, route) {
         let queryString = ``;
@@ -132,18 +151,17 @@ export default () => {
           headers
         });
       },
-      async getArtwork({ commit }, route) {
-        let query = route.params.id != undefined ? `&filter[name]=${route.params.id}` : '';
-        const { data } = await api.getArtwork(query);
-        data.map(item => {
-          this.dispatch('artworkInit', item)
-            .then(res => {
-              commit('setArtwork', res);
-            })
-            .catch(err => {
-              throw new Error(err);
-            });
-        });
+      async getDataForContactUs({ commit }) {
+        let { data } = await api.getDataForContactUs();
+        commit('setContactUsData', data);
+      },
+      async getDataForHomePage({ commit }) {
+        let { data } = await api.getDataForHomePage();
+        commit('setDataForHomePage', data)
+      },
+      async getArtLoansData({ commit }) {
+        let { data } = await api.getArtLoansData();        
+        commit('setDataForArtLoansPage', data);
       },
 
       // Helper Function

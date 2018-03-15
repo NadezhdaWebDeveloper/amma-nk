@@ -25,6 +25,9 @@ export default {
 	data() {
 		return {
 			slickOptions: {
+				autoplay: true,
+				speed: 1000,
+				infinite: true,
 				slidesToShow: 1,
 				dots: true,
 				dotsClass: 'slider-controls',
@@ -54,6 +57,10 @@ export default {
 				this.$refs.slick.reSlick();
 			});
 		},
+		afterChange() {
+			console.log('afterChange', );
+			
+		}
 	}
 }
 </script>

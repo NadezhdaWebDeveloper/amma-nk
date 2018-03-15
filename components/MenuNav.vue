@@ -37,7 +37,7 @@ export default {
 			}
 		}
 	},
-	beforeCreate() {
+	mounted() {
 		api.getMenu()
       .then(res => {				
 				this.createMenu(res.data.items);
@@ -49,7 +49,3 @@ export default {
 	}
 }
 </script>
-
-<style>
-
-</style>

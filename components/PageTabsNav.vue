@@ -1,14 +1,48 @@
 <template>
 	<ul class="tabs-nav">
-		<nuxt-link tag="li" to="/about-the-collection"><a>About the Collection</a></nuxt-link>
-		<nuxt-link tag="li" to="/artworks/"><a>Artworks</a></nuxt-link>
-		<nuxt-link tag="li" to="/artists/"><a>Artists Index</a></nuxt-link>
-		<nuxt-link tag="li" to="/art-loans/"><a>Art Loans</a></nuxt-link>
+		<nuxt-link tag="li" :to="item.url" v-for="(item, key, index) in menuItems" :key="index">
+			<a v-html="item.title"></a>
+		</nuxt-link>
 	</ul>
 </template>
 
 <script>
+import api from '@/api'
+import getUrl from "../helpers/getUrl"
 export default {
-	name: 'PageTabsNav'
+	name: 'PageTabsNav',
+	data() {
+    return {
+			menuItems: []
+    };
+	},
+	methods: {
+		createMenu(items) {
+			if (items.length) {
+				checkSubmenu(items);
+				this.menuItems = items;
+			}
+			function checkSubmenu(items) {
+				items.map((item, idx) => {
+					item.url = getUrl(item.url).pathname + getUrl(item.url).search;
+					if (item.hasOwnProperty('children')) {
+						checkSubmenu(item.children);
+					}
+				});
+			}
+		}
+	},
+	mounted() {
+		api.getCollectionMenu()
+      .then(res => {
+				console.log('res', res);
+				
+				this.createMenu(res.data.items);
+      })
+      .catch(error => {
+				console.log('ERROR Collection Menu');
+				throw new Error(error);
+      });
+	}
 }
 </script>

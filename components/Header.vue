@@ -81,28 +81,6 @@ export default {
 	name: "Header",
 	components: {
 		MenuNav
-	},
-  data() {
-    return {
-    };
-	},
-	beforeCreate() {
-		// console.log('Header before Create'); //
-	},
-  created() {
-		// console.log('Header created'); //
-	},
-	beforeMounted() {
-		// console.log('Header before Mounted');
-	},
-	mounted() {
-		// console.log('Header mounted'); //
-	},
-	beforeUpdate() {
-		// console.log('Header before Update'); //
-	},
-	update() {
-		// console.log('Header update');
 	}
 };
 </script>
