@@ -2,8 +2,6 @@
 	<div>
 		<div class="news">
 			<h3>{{ homeRss.title }}</h3>
-
-			<div v-html="rssData"></div>
 			<!-- {{rssData}} -->
 			<ul class="info-list">
 				<li>
@@ -76,12 +74,10 @@ export default {
 		])
 	},
 	mounted() {
-		console.log('homeRss', this.homeRss.rssLink);
-		
-		axios.get(this.homeRss.rssLink)
+		axios.get(this.homeRss.rssLink, {
+			responseType: 'text'
+		})
 		.then(res => {
-			console.log('Response', res);
-			
 			this.rssData = res.data
 		})
 		.catch(err => {

@@ -54,8 +54,7 @@ module.exports = {
     },
 
     vendor: [
-      'axios',
-      '~/plugins/form-processing.js'
+      'axios'
     ],
 
     plugins: [
@@ -88,7 +87,7 @@ module.exports = {
 
   plugins: [
     {src: '~/plugins/check-mobile.js', ssr: false},
-    // {src: '~/plugins/form-processing', ssr: false}
+    {src: '~/plugins/wpcf7-handler.js', ssr: false}
   ],
 
   router: {

@@ -27,6 +27,7 @@
     "jquery": "^3.3.1",
     "nuxt-google-maps-module": "^1.5.1",
     "vue-slick": "^1.1.12",
-    "vue2-google-maps": "^0.8.8"
+    "vue2-google-maps": "^0.8.8",
+    "xml-to-json-promise": "^0.0.3"
   }
 }

@@ -91,18 +91,15 @@ export default () => {
         let { data } = await api.getDataForHomePage();
         commit('setDataForHomePage', data)
       },
-
       async getDataForContactUs({ commit }) {
         let { data } = await api.getDataForContactUs();
         commit('setContactUsData', data);
       },
-
       async getArtists({ commit }, route) {
         let queryString = '';
         let { data } = await api.getArtists(queryString);
         commit('setArtists', data)
       },
-
       async getArtworks({ commit }, route) {
         let queryString = ``;
         for (const key in route) {
@@ -135,7 +132,6 @@ export default () => {
           headers
         });
       },
-
       async getArtwork({ commit }, route) {
         let query = route.params.id != undefined ? `&filter[name]=${route.params.id}` : '';
         const { data } = await api.getArtwork(query);

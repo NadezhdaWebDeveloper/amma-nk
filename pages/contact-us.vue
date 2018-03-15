@@ -55,15 +55,12 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import * as VueGoogleMaps from '~/node_modules/vue2-google-maps/src/main'
-// import formProcessing from '~/plugins/form-processing.js'
 
 Vue.use(VueGoogleMaps, {
 	load: {
 		key: 'AIzaSyBL9AMx-tXllSKsq6mP7Hemvk7BCk5tLUI'
 	}
 });
-
-// Vue.use(formProcessing);
 
 export default {
   name: 'ContactUs',  
