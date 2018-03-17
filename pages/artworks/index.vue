@@ -26,8 +26,6 @@
 							</div>
 						</div>
 						<!--/search-->
-
-
 						
 						<div class="filter-checkboxes">
 							<label>Filter By Type</label>
@@ -182,11 +180,15 @@ export default {
 			this.$router.push({query: newQuery});
 		}
 	},
-	created() {
+	mounted() {
 		this.getArtworks();
 		api.getArtworksSettings()
       .then(res => this.artworksFilters = res.data)
-			.catch(error => { throw new Error(error) });			
+			.catch(error => { throw new Error(error) });
+		
+		setTimeout(() => {
+			jcf.replaceAll();
+		}, 500);
 	},
 	computed: {
 		...mapState([

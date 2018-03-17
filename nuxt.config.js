@@ -12,10 +12,10 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     script: [
-      // { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js' },
-      // { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.js' },
-      // { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.select.js' },
-      // { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.checkbox.js' }
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js' },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.js' },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.select.js' },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jcf/1.2.3/js/jcf.checkbox.js' }
     ],
     link: [
       /*{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }*/
@@ -88,7 +88,7 @@ module.exports = {
   plugins: [
     {src: '~/plugins/check-mobile.js', ssr: false},
     {src: '~/plugins/wpcf7-handler.js', ssr: false},
-    {src: '~/plugins/jcf-handler.js', ssr: false}
+    {src: '~/plugins/global.js', ssr: false}
   ],
 
   router: {
