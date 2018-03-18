@@ -26,7 +26,8 @@ export default {
 		return {
 			slickOptions: {
 				autoplay: true,
-				speed: 1000,
+				autoplaySpeed: 10000,
+				speed: 500,
 				infinite: true,
 				slidesToShow: 1,
 				dots: true,

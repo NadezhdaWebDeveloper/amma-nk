@@ -25,6 +25,7 @@
       height: 670px;
     }
   }
+  .slick-current,
   .jbs-current {
     @include xmedium-up {
       z-index: 5 !important;
