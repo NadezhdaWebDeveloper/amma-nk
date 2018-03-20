@@ -188,7 +188,7 @@ export default {
 		
 		setTimeout(() => {
 			jcf.replaceAll();
-		}, 500);
+		}, 1000);
 	},
 	computed: {
 		...mapState([
