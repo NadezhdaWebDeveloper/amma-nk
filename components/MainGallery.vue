@@ -60,7 +60,6 @@ export default {
 		},
 		afterChange() {
 			console.log('afterChange', );
-			
 		}
 	}
 }

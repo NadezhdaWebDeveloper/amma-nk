@@ -116,99 +116,101 @@
 </template>
 
 <script>
-import api from '@/api'
-import { mapState } from 'vuex'
+import api from "@/api";
+import { mapState } from "vuex";
 
-import PageTabsNav from '@/components/PageTabsNav'
+import PageTabsNav from "@/components/PageTabsNav";
 
 export default {
-	name: "Artworks",
-	components: {
-		PageTabsNav
-	},
-	// fetch({ store, route }) {
-		// const arr = [
-			// store.dispatch("getArtworks", route),
-			// store.dispatch("getArtworks", route)
-		// ]
-		// return Promise.all(arr);
-		// return store.dispatch("getArtworks", route);
-	// },
+  name: "Artworks",
+  components: {
+    PageTabsNav
+  },
+  // fetch({ store, route }) {
+  // const arr = [
+  // store.dispatch("getArtworks", route),
+  // store.dispatch("getArtworks", route)
+  // ]
+  // return Promise.all(arr);
+  // return store.dispatch("getArtworks", route);
+  // },
   data() {
     return {
-			artworksFilters: {},
-			checkedTypes: [],
-			sortBy: this.$route.query.orderby || 'default',
-			perPage: +this.$route.query.per_page || 4,
-			decade: this.$route.query.artwork_year || 'All',
-			page: +this.$route.query.page || 1,
-			showOnly: this.$route.query['new-acquisition'] || ''
+      checkedTypes: [],
+      sortBy: this.$route.query.orderby || "default",
+      perPage: +this.$route.query.per_page || 4,
+      decade: this.$route.query.artwork_year || "All",
+      page: +this.$route.query.page || 1,
+      showOnly: this.$route.query["new-acquisition"] || ""
     };
-	},
-	watch:{
-		$route({ params, query }) {
-			this.getArtworks(query);
-		},
-		checkedTypes(arr) {			
-			let oldQuery = this.$route.query;
-			let newQuery = {...oldQuery, types: arr.length > 0 ? arr.join('%2C') : undefined};
-			this.$router.push({query: newQuery});
-		},
-		showOnly(val) {
-			let oldQuery = this.$route.query;
-			let newQuery = {...oldQuery, "new-acquisition": val ? 'yes' : undefined};
-			this.$router.push({query: newQuery});
-		},
-		decade(val) {
-			let oldQuery = this.$route.query;
-			let newQuery = {...oldQuery, artwork_year: val};
-			this.$router.push({query: newQuery});
-		},
-		sortBy(val) {			
-			let oldQuery = this.$route.query;
-			let newQuery = {...oldQuery, orderby: val};
-			this.$router.push({query: newQuery});
-		},
-		page(val) {
-			let oldQuery = this.$route.query;
-			let newQuery = {...oldQuery, page: val};
-			this.$router.push({query: newQuery});
-		},
-		perPage(val) {
-			let oldQuery = this.$route.query;
-			let newQuery = {...oldQuery, per_page: val};
-			this.$router.push({query: newQuery});
-		}
-	},
-	mounted() {
-		this.getArtworks();
-		api.getArtworksSettings()
-      .then(res => this.artworksFilters = res.data)
-			.catch(error => { throw new Error(error) });
-		
-		setTimeout(() => {
-			jcf.replaceAll();
-		}, 1000);
-	},
-	computed: {
-		...mapState([
-			'artworks',
-			'artworksHeaders'
-		])
-	},
-	methods: {
-		getArtworks() {
-			let route = null;
-			if ( Object.keys(this.$route.query).length === 0 ) {
-				route = {
-					per_page: this.perPage,
-					page: this.page
-				};
-			} else {
-				route = this.$route.query;
-			}
-			this.$store.dispatch("getArtworks", route);
-		}
+  },
+  watch: {
+    $route({ params, query }) {
+      this.getArtworks(query);
+    },
+    checkedTypes(arr) {
+      let oldQuery = this.$route.query;
+      let newQuery = {
+        ...oldQuery,
+        types: arr.length > 0 ? arr.join("%2C") : undefined
+      };
+      this.$router.push({ query: newQuery });
+    },
+    showOnly(val) {
+      let oldQuery = this.$route.query;
+      let newQuery = {
+        ...oldQuery,
+        "new-acquisition": val ? "yes" : undefined
+      };
+      this.$router.push({ query: newQuery });
+    },
+    decade(val) {
+      let oldQuery = this.$route.query;
+      let newQuery = { ...oldQuery, artwork_year: val };
+      this.$router.push({ query: newQuery });
+    },
+    sortBy(val) {
+      let oldQuery = this.$route.query;
+      let newQuery = { ...oldQuery, orderby: val };
+      this.$router.push({ query: newQuery });
+    },
+    page(val) {
+      let oldQuery = this.$route.query;
+      let newQuery = { ...oldQuery, page: val };
+      this.$router.push({ query: newQuery });
+    },
+    perPage(val) {
+      let oldQuery = this.$route.query;
+      let newQuery = { ...oldQuery, per_page: val };
+      this.$router.push({ query: newQuery });
+    }
+  },
+  mounted() {
+    this.getArtworks();	
+	jcf.replaceAll();
+  },
+  async asyncData({ app }) {
+	let { data } = await api.getArtworksSettings();
+	return {
+		artworksFilters: data
 	}
+  },
+  computed: {
+    ...mapState(["artworks", "artworksHeaders"])
+  },
+  methods: {
+    getArtworks() {
+      let route = null;
+      if (Object.keys(this.$route.query).length === 0) {
+        route = {
+          per_page: this.perPage,
+          page: this.page
+        };
+      } else {
+        route = this.$route.query;
+      }
+      this.$store.dispatch("getArtworks", route);
+    }
+  }
 };
 </script>

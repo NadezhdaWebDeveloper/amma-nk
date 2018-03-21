@@ -66,7 +66,7 @@ export default () => {
         }
       },
       artLoansPageData: state => {
-        console.log(state.artLoansPageData._embedded['wp:featuredmedia'][0]);
+        // console.log(state.artLoansPageData._embedded['wp:featuredmedia'][0]);
         
         return {
           title: state.artLoansPageData.title.rendered,

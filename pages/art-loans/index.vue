@@ -4,7 +4,7 @@
 			<h1>The Collection</h1>
 			<div class="tabs-wrap">
 				<PageTabsNav/>
-				<div class="info-area">
+				<!-- <div class="info-area">
 						<figure :style="`backgroundImage: url('${artLoansPageData.media.src}');`"></figure>
 						<div class="description">
 								<h2 v-html="artLoansPageData.title"></h2>
@@ -18,7 +18,7 @@
 								<a href="#" class="link show-popup" v-html="artLoansPageData.reqBtnLabel"></a>
 								<a :href="artLoansPageData.pdfLink" class="link icon-acrobat" download="">Info Art Loans</a>
 						</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -32,7 +32,7 @@ export default {
 		PageTabsNav
 	},
 	async asyncData({ app, error }) {
-		await app.store.dispatch("getArtLoansData");
+		// await app.store.dispatch("getArtLoansData");
 	},
 	data() {
 		return {
